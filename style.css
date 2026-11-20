@@ -1,0 +1,990 @@
+:root{--paper:#eee7e5;--paper2:#f5efed;--ink:#30232f;--plum:#351c35;--mauve:#a98eaa;--lavender:#cdbdc9;--muted:#796c78;--white:#fffaf8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Yu Mincho","Hiragino Mincho ProN",Georgia,serif}a{color:inherit;text-decoration:none}.site-header{height:76px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;background:var(--paper2)}.wordmark{font-size:1.35rem;letter-spacing:.18em}.site-nav{display:flex;gap:clamp(16px,3vw,42px);align-items:center}.site-nav a,.eyebrow,.tag,.text-link,.menu-toggle{font-family:Arial,sans-serif;font-size:.72rem;letter-spacing:.13em}.site-nav a{padding:10px 0}.site-nav a.active{color:var(--plum);border-bottom:2px solid var(--plum)}.menu-toggle{display:none;border:0;background:var(--plum);color:white;padding:13px 20px}.hero{min-height:min(690px,calc(100vh - 76px));display:grid;grid-template-columns:1fr 1fr;background:var(--paper2)}.hero-art{min-height:580px}.art-placeholder{background:linear-gradient(145deg,#4a3548,#241c27 60%,#8d7189);color:#f5efed;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;letter-spacing:.18em;position:relative;overflow:hidden}.art-placeholder:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,#b49ab055,transparent 45%)}.art-placeholder span,.art-placeholder small{position:relative;z-index:1}.art-placeholder span{font: .72rem Arial,sans-serif;letter-spacing:.2em}.art-placeholder small{font-size:.75rem;margin-top:12px;letter-spacing:.08em}.hero-copy{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:70px 8vw}.eyebrow{letter-spacing:.22em;color:var(--muted);margin:0 0 20px}.hero h1{font-size:clamp(3.5rem,8vw,7rem);font-weight:400;letter-spacing:.16em;margin:0 0 30px}.lead{font-size:1.05rem;line-height:2.1;letter-spacing:.12em}.text-link{display:inline-block;margin-top:32px;padding-bottom:8px;border-bottom:1px solid var(--plum);letter-spacing:.16em}.text-link span{margin-left:12px}.home-grid{display:grid;grid-template-columns:1fr 1fr;gap:4vw;padding:8vw 5vw}.topics-preview,.song-preview{min-width:0}.section-heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:28px}.section-heading h2,.song-preview h2,.page-title h1{font-size:2.5rem;font-weight:400;margin:0}.jp-label{margin:8px 0;color:var(--muted);letter-spacing:.12em}.news-row{display:grid;grid-template-columns:100px 75px 1fr;gap:14px;padding:17px 0;border-bottom:1px solid #b8a8b2;font-size:.88rem;align-items:center}.news-row time,.tag{font-size:.72rem;color:var(--muted)}.tag{letter-spacing:.12em}.song-preview{display:grid;grid-template-columns:36% 1fr;background:var(--paper2);min-height:280px}.song-art{min-height:280px}.song-preview-copy{padding:34px 28px;align-self:center}.muted{color:var(--muted);font-size:.88rem;line-height:1.8}.subpage{max-width:1200px;margin:auto;padding:76px 5vw 110px}.page-title{margin-bottom:55px}.page-title h1{font-size:clamp(3rem,7vw,5rem)}.profile-layout{display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:center}.profile-art{min-height:560px}.profile-info h2{font-size:2.4rem;font-weight:400;letter-spacing:.1em}.profile-info p{line-height:2}.profile-info dl{display:grid;grid-template-columns:110px 1fr;gap:18px;margin-top:36px;font-size:.9rem}.profile-info dt{color:var(--muted);font: .7rem Arial,sans-serif;letter-spacing:.15em}.profile-info dd{margin:0}.wide-art{height:300px;margin-top:70px}.gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:48px 28px}.gallery-image{aspect-ratio:4/3}.gallery-grid figure{margin:0}.gallery-grid figcaption{display:flex;justify-content:space-between;gap:12px;padding-top:14px;font-size:.85rem}.gallery-grid figcaption span{color:var(--muted);font-size:.75rem}.note{margin-top:28px}.table-tools{display:flex;gap:12px;margin-bottom:20px}.table-tools input,.table-tools select{background:var(--paper2);border:1px solid #c8b9c3;border-radius:0;padding:14px 16px;color:var(--ink);font:inherit}.table-tools input{flex:1;min-width:0}.table-tools select{min-width:180px}.table-wrap{overflow-x:auto;background:var(--paper2)}.song-table{border-collapse:collapse;width:100%;min-width:700px;text-align:left}.song-table th,.song-table td{padding:17px 18px;border-bottom:1px solid #d5c9d0;font-size:.86rem}.song-table th{font-weight:400;color:var(--muted);font-size:.75rem;cursor:pointer}.song-table tbody tr:hover{background:#e8dfe5}.topic-list article{padding:28px 0;border-bottom:1px solid #c9bac4}.topic-list time{margin-right:20px;color:var(--muted);font-size:.8rem}.topic-list h2{font-size:1.2rem;font-weight:400}.topic-list p,.contact-content p{line-height:2}.contact-content{max-width:650px}.primary-link{display:inline-block;margin-top:20px;background:var(--plum);color:white;padding:16px 35px;font: .75rem Arial,sans-serif;letter-spacing:.15em}footer{padding:28px 5vw;background:var(--plum);color:var(--paper2);display:flex;justify-content:space-between;font: .68rem Arial,sans-serif;letter-spacing:.16em}
+@media(max-width:760px){.site-header{height:64px;margin:6px;background:var(--paper2);padding:0 18px}.menu-toggle{display:block}.site-nav{display:none;position:absolute;z-index:10;top:70px;left:6px;right:6px;background:var(--plum);padding:28px;flex-direction:column;align-items:stretch;gap:4px}.site-nav.open{display:flex}.site-nav a{color:var(--paper2);padding:14px 4px;border-bottom:1px solid #ffffff25}.site-nav a.active{color:var(--lavender);border-bottom-color:var(--lavender)}.hero{display:flex;flex-direction:column;min-height:0;margin:0 6px}.hero-art{min-height:65vw;max-height:430px}.hero-copy{min-height:340px;padding:55px 20px}.hero h1{font-size:4rem}.home-grid{grid-template-columns:1fr;gap:55px;padding:65px 20px}.news-row{grid-template-columns:85px 58px 1fr;gap:8px;font-size:.78rem}.song-preview{grid-template-columns:34% 1fr}.song-art{min-height:250px}.song-preview-copy{padding:22px 16px}.song-preview h2{font-size:1.8rem}.song-preview-copy .muted{font-size:.75rem}.subpage{padding:55px 20px 80px}.page-title{margin-bottom:38px}.profile-layout{grid-template-columns:1fr;gap:35px}.profile-art{min-height:110vw;max-height:520px}.profile-info dl{grid-template-columns:90px 1fr}.wide-art{height:220px;margin-top:45px}.gallery-grid{grid-template-columns:1fr;gap:32px}.gallery-grid figcaption{flex-direction:column;gap:5px}.table-tools{flex-direction:column}.table-tools select{width:100%}.song-table th,.song-table td{padding:14px 12px}footer{padding:24px 20px;font-size:.6rem}}
+
+.home-links{display:grid;grid-template-columns:repeat(3,1fr);background:var(--paper2)}
+.home-links>a{min-height:190px;padding:30px 32px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px;border-right:1px solid #e2d8df;border-bottom:1px solid #e2d8df;position:relative}
+.home-links>a:nth-child(3n){border-right:0}.home-links strong{font-size:1.65rem;font-weight:400;letter-spacing:.12em}.home-links small{color:var(--muted);font-size:.8rem}.home-links b{position:absolute;right:28px;bottom:25px;font-weight:400}
+.notes-content{max-width:850px}.notes-content section{padding:25px 0;border-bottom:1px solid #d5c9d0}.notes-content h2,.music-section h2,.costume-entry h2{font-size:1.25rem;font-weight:400;letter-spacing:.08em}.notes-content p{line-height:2}
+.costume-entry{margin:55px 0}.costume-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.costume-grid .art-placeholder{min-height:360px}
+.music-section{margin:50px 0}.music-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.music-item{display:flex;flex-direction:column;gap:10px}.music-cover{aspect-ratio:1/1}.music-item small{color:var(--muted)}.music-item .text-link{align-self:flex-start;margin-top:8px}
+@media(max-width:760px){.home-links{grid-template-columns:1fr 1fr}.home-links>a{min-height:155px;padding:22px 18px}.home-links>a:nth-child(3n){border-right:1px solid #e2d8df}.home-links>a:nth-child(2n){border-right:0}.home-links strong{font-size:1.25rem}.costume-grid{grid-template-columns:1fr}.costume-grid .art-placeholder{min-height:300px}.music-grid{grid-template-columns:1fr 1fr}}
+
+.links-list{max-width:850px}.links-list a{display:grid;grid-template-columns:180px 1fr 30px;align-items:center;gap:20px;padding:25px 8px;background:var(--paper2);margin-bottom:10px}.links-list a:hover{background:#e5dbe3}.link-label{font-size:1.35rem;letter-spacing:.06em}.link-desc{font-size:.85rem;color:var(--muted)}.links-list b{font-weight:400;font-size:1.2rem}
+@media(max-width:760px){.links-list a{grid-template-columns:1fr 25px;gap:6px 12px;padding:20px 16px}.link-label{font-size:1.15rem}.link-desc{grid-column:1}.links-list b{grid-column:2;grid-row:1/3}}
+
+/* Refinements: compact home hero, costume proportions, denser song table */
+.hero-copy-minimal{gap:4px}
+.hero-copy-minimal .eyebrow{margin:0;color:var(--muted)}
+.hero-copy-minimal .text-link{margin-top:18px}
+.profile-costume-link{display:flex;justify-content:space-between;align-items:center;margin-top:65px;padding:26px 30px;background:var(--paper2)}
+.profile-costume-link span{display:flex;flex-direction:column;gap:8px}
+.profile-costume-link strong{font-size:1.25rem;font-weight:400;letter-spacing:.12em}
+.profile-costume-link small{color:var(--muted);font-size:.85rem}
+.profile-costume-link b{font-size:1.3rem;font-weight:400}
+.costume-grid .costume-fullbody{aspect-ratio:2/3;min-height:0}
+.costume-grid .costume-sheet{aspect-ratio:3/2;min-height:0}
+.music-section:first-of-type .music-grid{grid-template-columns:minmax(220px, 1fr)}
+.music-grid-covers{grid-template-columns:repeat(3,minmax(0,1fr))}
+.song-table-compact{min-width:640px}
+.song-table-compact th,.song-table-compact td{padding:9px 12px;font-size:.78rem;line-height:1.35}
+.song-table-compact th{font-size:.69rem;white-space:nowrap}
+@media(max-width:760px){
+ .profile-costume-link{margin-top:45px;padding:22px 18px}
+ .costume-grid .costume-fullbody{aspect-ratio:2/3;min-height:0;max-height:560px}
+ .costume-grid .costume-sheet{aspect-ratio:3/2;min-height:0}
+ .music-section:first-of-type .music-grid{grid-template-columns:1fr 1fr}
+ .music-grid-covers{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .song-table-compact th,.song-table-compact td{padding:8px 10px;font-size:.74rem}
+}
+
+/* Latest refinements */
+.zoomable{cursor:zoom-in;position:relative}
+.zoomable:before{content:"クリックで拡大";position:absolute;z-index:2;right:12px;bottom:12px;padding:8px 11px;background:#241c27bb;color:#fff;font: .65rem Arial,sans-serif;letter-spacing:.08em}
+.lightbox{display:none;position:fixed;z-index:100;inset:0;background:#17121beF;align-items:center;justify-content:center;padding:5vh 5vw}
+.lightbox.open{display:flex}
+.lightbox-content{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.lightbox-content .art-placeholder{width:auto;height:auto;max-width:92vw;max-height:90vh;aspect-ratio:initial;min-height:0;flex:0 1 auto;padding:8vw}
+.lightbox-content .costume-fullbody{height:90vh;aspect-ratio:2/3}
+.lightbox-content .costume-sheet{width:min(92vw,1200px);aspect-ratio:3/2}
+.lightbox-close{position:absolute;top:18px;right:24px;border:0;background:transparent;color:white;font-size:2.5rem;cursor:pointer}
+.music-grid-covers{grid-template-columns:repeat(3,minmax(0,1fr))}
+.music-cover{aspect-ratio:16/9}
+.songs-page-title{margin-bottom:28px}
+.songs-page-title h1{font-size:clamp(2.2rem,5vw,3.4rem)}
+.songs-page-title .muted{margin:8px 0 0;font-size:.8rem}
+@media(max-width:760px){.music-grid-covers{grid-template-columns:repeat(2,minmax(0,1fr))}.lightbox{padding:5vh 3vw}.lightbox-content .costume-fullbody{height:auto;width:auto;max-height:88vh;max-width:94vw}.lightbox-content .costume-sheet{width:94vw}.songs-page-title{margin-bottom:24px}}
+
+/* Costume side-by-side proportions: both images share the same displayed height */
+@media(min-width:761px){
+  .costume-grid{grid-template-columns:4fr 9fr;align-items:start}
+  .costume-grid .costume-fullbody,
+  .costume-grid .costume-sheet{width:100%;height:auto;min-height:0}
+}
+/* Slightly tighter song search controls */
+.table-tools input,.table-tools select{padding:9px 13px;min-height:42px}
+.table-tools{gap:10px;margin-bottom:16px}
+
+
+/* HOME メインビジュアルの表示サイズ調整 */
+.hero-art {
+  min-height: 0;
+  height: min(580px, calc(100vh - 76px));
+  overflow: hidden;
+}
+
+.hero-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 760px) {
+  .hero-art {
+    height: auto;
+    aspect-ratio: 5 / 3;
+    min-height: 0;
+    max-height: 430px;
+  }
+}
+
+.profile-art {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.profile-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+/* PROFILEの画像を左上に揃える */
+.profile-layout {
+  align-items: start;
+}
+
+.profile-art {
+  align-self: start;
+  height: auto;
+}
+
+.profile-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.profile-info h3 {
+  margin-top: 24px;
+}
+
+
+/* Costume images */
+.costume-grid .art-placeholder img {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.lightbox-content .art-placeholder {
+  padding: 0;
+}
+/* COSTUME 拡大表示の画像切れ対策 */
+.lightbox-content .costume-fullbody,
+.lightbox-content .costume-sheet {
+  width: auto;
+  height: auto;
+  max-width: 92vw;
+  max-height: 90vh;
+  aspect-ratio: auto;
+  min-height: 0;
+  padding: 0;
+}
+
+.lightbox-content .costume-fullbody img,
+.lightbox-content .costume-sheet img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 92vw;
+  max-height: 90vh;
+  object-fit: contain;
+}
+.costume-switcher {
+  position: relative;
+}
+
+.costume-switcher button {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: #241c27bb;
+  color: white;
+  font-size: 2rem;
+  width: 38px;
+  height: 48px;
+  cursor: pointer;
+}
+
+.costume-prev { left: 8px; }
+.costume-next { right: 8px; }
+
+.costume-switcher img {
+  cursor: zoom-in;
+}
+/* 三面図の表示枠を画像の比率に合わせる */
+.costume-grid .costume-sheet {
+  aspect-ratio: auto;
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.costume-grid .costume-sheet img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* HOME scroll reveal */
+.hero-scroll-scene {
+  height: 190vh;
+  position: relative;
+}
+
+.hero-scroll-stage {
+  position: sticky;
+  top: 76px;
+  height: calc(100vh - 76px);
+  min-height: 400px;
+  overflow: hidden;
+  background: var(--paper2);
+}
+
+.hero-scroll-stage .hero-art {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  transition: width .8s ease;
+}
+
+.hero-scroll-stage .hero-copy {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  opacity: 0;
+  transform: translateY(18px);
+  pointer-events: none;
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.hero-scroll-stage.is-revealed .hero-art {
+  width: 50%;
+}
+
+.hero-scroll-stage.is-revealed .hero-copy {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@media(max-width:760px) {
+  .hero-scroll-scene {
+    height: 160vh;
+  }
+
+  .hero-scroll-stage {
+    top: 64px;
+    height: calc(100vh - 64px);
+    min-height: 0;
+  }
+
+  .hero-scroll-stage .hero-art {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-scroll-stage .hero-copy {
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    height: 35%;
+  }
+
+  .hero-scroll-stage.is-revealed .hero-art {
+    width: 100%;
+    height: 65%;
+  }
+}
+
+/* HOME：透かしのようなPROFILEパネル */
+.hero-scroll-stage {
+  overflow: visible;
+}
+
+.hero-scroll-stage .hero-art {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-scroll-stage.is-revealed .hero-art {
+  width: 100%;
+}
+
+.hero-scroll-stage .hero-copy {
+  z-index: 2;
+  top: -6%;
+  right: 17%;
+  width: 18%;
+  height: 112%;
+  padding: 30px 12px;
+  background: rgba(238, 231, 229, 0.78);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  opacity: 0;
+  transform: translateY(18px);
+  pointer-events: none;
+}
+
+.hero-scroll-stage.is-revealed .hero-copy {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@media(max-width:760px) {
+  .hero-scroll-stage .hero-copy {
+    top: auto;
+    bottom: -3%;
+    right: 8%;
+    width: 30%;
+    height: 38%;
+    padding: 12px;
+  }
+}
+
+/* HOME メインビジュアルの高さを少し抑える */
+.hero-scroll-stage {
+  height: 82vh;
+  min-height: 480px;
+  max-height: 760px;
+  margin-top: 28px;
+}
+
+@media(max-width:760px) {
+  .hero-scroll-stage {
+    height: 68vh;
+    min-height: 380px;
+    max-height: 600px;
+    margin-top: 16px;
+  }
+}
+
+/* HOME 最終レイアウト調整 */
+.hero-scroll-stage {
+  height: 75vh;
+  min-height: 440px;
+  max-height: 680px;
+}
+
+/* PROFILEの半透明パネル */
+.hero-scroll-stage .hero-copy {
+  top: 50%;
+  right: 8%;
+  width: clamp(220px, 24vw, 320px);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  padding: 24px;
+  background: rgba(238, 231, 229, 0.76);
+  transform: translateY(calc(-50% + 18px));
+}
+
+.hero-scroll-stage.is-revealed .hero-copy {
+  transform: translateY(-50%);
+}
+
+/* スマートフォン */
+@media(max-width:760px) {
+  .hero-scroll-stage {
+    height: 65vh;
+    min-height: 360px;
+    max-height: 540px;
+  }
+
+  .hero-scroll-stage .hero-copy {
+    top: auto;
+    bottom: 5%;
+    right: 5%;
+    width: 42%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    padding: 12px;
+    transform: translateY(18px);
+  }
+
+  .hero-scroll-stage.is-revealed .hero-copy {
+    transform: translateY(0);
+  }
+}
+
+/* ヘッダーをスクロール中も固定 */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* PROFILEパネルの形状を調整 */
+.hero-scroll-stage .hero-copy {
+  top: 50%;
+  bottom: auto;
+  right: 5%;
+  width: clamp(220px, 23vw, 300px);
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 1 / 1;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(calc(-50% + 18px));
+}
+
+/* PROFILEパネルもホバー時に濃いプラム色へ */
+.hero-scroll-stage .hero-copy {
+  transition: opacity .7s ease, transform .7s ease, background .2s, color .2s;
+}
+
+.hero-scroll-stage .hero-copy:hover {
+  background: var(--plum);
+  color: var(--paper2);
+}
+
+.hero-scroll-stage .hero-copy:hover .eyebrow {
+  color: var(--lavender);
+}
+
+.hero-scroll-stage .hero-copy:hover .text-link {
+  color: var(--paper2);
+  border-bottom-color: var(--paper2);
+}
+
+.hero-scroll-stage.is-revealed .hero-copy {
+  transform: translateY(-50%);
+}
+
+/* スマートフォン */
+@media(max-width:760px) {
+  .site-header {
+    position: sticky;
+    top: 0;
+    margin: 0 6px;
+  }
+
+  .hero-scroll-stage {
+    top: 64px;
+  }
+
+  .hero-scroll-stage .hero-copy {
+    top: 50%;
+    bottom: auto;
+    right: 4%;
+    width: min(42vw, 220px);
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1 / 1;
+    padding: 12px;
+    transform: translateY(calc(-50% + 18px));
+  }
+
+  .hero-scroll-stage.is-revealed .hero-copy {
+    transform: translateY(-50%);
+  }
+}
+
+/* HOME ヘッダーの色と余白調整 */
+
+/* 上部ナビゲーションの背景色 */
+.site-header {
+  background: #D5C3D2;
+}
+
+/* メインビジュアル上部の隙間をなくす */
+.hero-scroll-stage {
+  margin-top: 0;
+}
+
+/* スマートフォンでも隙間をなくす */
+@media(max-width:760px) {
+  .hero-scroll-stage {
+    margin-top: 0;
+  }
+}
+/* HOME ヘッダーをフッターと同じ色に */
+.site-header {
+  background: var(--plum);
+  color: var(--paper2);
+}
+
+.site-header .site-nav a.active {
+  color: var(--lavender);
+  border-bottom-color: var(--lavender);
+}
+
+/* Purple accent color */
+.music-video-item .text-link {
+  color: var(--plum);
+  border-bottom-color: var(--plum);
+}
+
+.music-more {
+  color: var(--plum);
+  border-color: var(--plum);
+}
+
+.music-more:hover {
+  color: var(--plum);
+  border-color: var(--plum);
+}
+/* WATCH ON YOUTUBE：ホバー時の色変更 */
+.music-video-item:hover .text-link {
+  color: var(--mauve) !important;
+  border-bottom-color: var(--mauve) !important;
+}
+
+
+/* HOME：左側にYouTube・Xの小さなリンクパネル */
+.hero-scroll-stage .hero-social-links {
+  position: absolute;
+  z-index: 2;
+  left: 13%;
+  top: 50%;
+  width: clamp(76px, 10vw, 132px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2vw, 26px);
+  transform: translateY(-50%);
+}
+
+.hero-scroll-stage .hero-social-link {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  padding: 12px;
+  border-radius: 0;
+  background: rgba(238, 231, 229, 0.78);
+  color: var(--plum);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  font: 0.62rem Arial, sans-serif;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease, background .2s, color .2s;
+}
+
+.hero-scroll-stage .hero-social-x {
+  width: 100%;
+  align-self: flex-start;
+  margin-left: 42%;
+  margin-top: 2px;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+.hero-scroll-stage .hero-social-link b {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.hero-scroll-stage.is-revealed .hero-social-link {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.hero-scroll-stage .hero-social-link:hover {
+  background: var(--plum);
+  color: var(--paper2);
+}
+
+@media (max-width: 760px) {
+  .hero-scroll-stage .hero-social-links {
+    left: 5%;
+    top: 50%;
+    width: clamp(58px, 16vw, 88px);
+    gap: 10px;
+  }
+
+  .hero-scroll-stage .hero-social-link {
+    padding: 7px;
+    font-size: 0.48rem;
+  }
+
+  .hero-scroll-stage .hero-social-x {
+    width: 100%;
+    margin-left: 38%;
+    margin-top: 0;
+    left: 0;
+    top: 0;
+  }
+}
+
+/* HOME：下部メニューまでのスクロール距離を短縮 */
+.hero-scroll-scene {
+  height: 135vh;
+}
+
+@media (max-width: 760px) {
+  .hero-scroll-scene {
+    height: 115vh;
+  }
+}
+
+
+/* HOME：メインビジュアルをぼかしから鮮明に */
+.hero-scroll-stage .hero-art img {
+  filter: blur(12px);
+  transform: scale(1.035);
+  transition: filter 1.7s ease, transform 1.7s ease;
+}
+
+body.is-loaded .hero-scroll-stage .hero-art img {
+  filter: blur(0);
+  transform: scale(1);
+}
+
+/* HOME：リンクパネルを下から順番に表示 */
+.hero-scroll-stage .hero-social-link {
+  transform: translateY(42px);
+  transition:
+    opacity .65s ease,
+    transform .65s cubic-bezier(.22,.7,.25,1),
+    background .2s ease,
+    color .2s ease;
+}
+
+.hero-scroll-stage .hero-social-youtube {
+  transition-delay: 0s, 0s, 0s, 0s;
+}
+
+.hero-scroll-stage .hero-social-x {
+  transition-delay: 0s, .22s, 0s, 0s;
+}
+
+.hero-scroll-stage .hero-copy {
+  transition:
+    opacity .65s ease .44s,
+    transform .65s cubic-bezier(.22,.7,.25,1) .44s,
+    background .2s ease,
+    color .2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-stage .hero-art img,
+  .hero-scroll-stage .hero-social-link,
+  .hero-scroll-stage .hero-copy {
+    transition-duration: .01ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+
+/* NOTES：Google Docs連携表示 */
+.notes-content {
+  max-width: 850px;
+}
+.notes-content > h2,
+.notes-content > h3,
+.notes-content > h4 {
+  font-weight: 400;
+  line-height: 1.7;
+}
+.notes-content > h2 {
+  margin: 48px 0 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #c9bac4;
+  font-size: 1.45rem;
+  letter-spacing: .08em;
+}
+.notes-content > h2:first-child {
+  margin-top: 0;
+}
+.notes-content > h3 {
+  margin: 32px 0 12px;
+  font-size: 1.18rem;
+  letter-spacing: .06em;
+}
+.notes-content > h4 {
+  margin: 24px 0 10px;
+  font-size: 1.02rem;
+  letter-spacing: .04em;
+}
+.notes-content > p,
+.notes-content .notes-loading {
+  margin: 12px 0;
+  line-height: 2;
+  white-space: pre-wrap;
+}
+.notes-content .notes-list {
+  margin: 12px 0 18px;
+  padding-left: 1.8em;
+  line-height: 2;
+}
+.notes-content .notes-list li {
+  padding-left: .2em;
+  margin: 3px 0;
+}
+.notes-content .notes-list[data-level="1"] {
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+.notes-error {
+  max-width: 850px;
+  padding: 18px 20px;
+  border-left: 3px solid var(--plum);
+  background: var(--paper2);
+  line-height: 1.9;
+}
+.notes-error[hidden] {
+  display: none;
+}
+@media (max-width: 760px) {
+  .notes-content > h2 {
+    margin-top: 38px;
+    font-size: 1.3rem;
+  }
+  .notes-content > h3 {
+    margin-top: 27px;
+    font-size: 1.1rem;
+  }
+  .notes-content > p,
+  .notes-content .notes-list {
+    font-size: .92rem;
+  }
+}
+
+
+/* NOTES：冒頭案内と目次リンクの視認性 */
+.notes-intro {
+  margin-top: 22px;
+  color: var(--ink);
+}
+.notes-intro p {
+  margin: 7px 0;
+  line-height: 1.9;
+  font-size: .9rem;
+}
+.notes-intro .notes-intro-title {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  letter-spacing: .05em;
+}
+.notes-intro .notes-updated {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: .78rem;
+}
+.notes-toc {
+  margin-top: 34px;
+}
+.notes-toc-title {
+  display: inline-block;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--plum);
+  color: var(--ink);
+}
+.notes-toc a {
+  text-decoration: underline;
+  text-decoration-color: #b8a8b2;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.notes-toc a:hover {
+  text-decoration-color: var(--plum);
+}
+@media (max-width: 760px) {
+  .notes-intro {
+    margin-top: 18px;
+  }
+  .notes-toc {
+    margin-top: 28px;
+  }
+}
+
+
+/* NOTES：目次をリンクとして分かりやすく */
+.notes-toc a {
+  text-decoration: underline !important;
+  text-decoration-color: var(--mauve) !important;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.notes-toc a:hover {
+  text-decoration-color: var(--plum) !important;
+}
+
+/* NOTES：見出し2（Docsの見出し2）の下に区切り線 */
+.notes-content > h3 {
+  padding-bottom: 13px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #c9bac4;
+}
+
+
+/* NOTES：目次と本文の間に余白を追加 */
+.notes-toc {
+  margin-bottom: 76px;
+}
+@media (max-width: 760px) {
+  .notes-toc {
+    margin-bottom: 58px;
+  }
+}
+
+
+/* NOTES：見出しは明朝、本文・目次は読みやすいゴシック */
+.notes-intro,
+.notes-toc,
+.notes-content,
+.notes-error {
+  font-family:
+    "Noto Sans JP",
+    "Yu Gothic",
+    "Hiragino Kaku Gothic ProN",
+    "Meiryo",
+    sans-serif;
+  font-weight: 400;
+}
+
+.notes-intro {
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.notes-toc {
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.notes-content {
+  font-size: 16px;
+  line-height: 1.95;
+}
+
+.notes-content > p,
+.notes-content .notes-list {
+  font-size: 16px;
+  line-height: 1.95;
+  font-weight: 400;
+}
+
+/* 見出しはサイト全体と同じ明朝体を維持 */
+.notes-content > h2,
+.notes-content > h3,
+.notes-content > h4 {
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif;
+  font-weight: 400;
+}
+
+.notes-error {
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+@media (max-width: 760px) {
+  .notes-content,
+  .notes-content > p,
+  .notes-content .notes-list {
+    font-size: 15px;
+    line-height: 1.95;
+  }
+}
+
+
+/* NOTES：冒頭案内・目次は通常の明朝体 */
+.notes-intro,
+.notes-toc,
+.notes-toc-title,
+.notes-toc a {
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", Georgia, serif;
+  font-weight: 400;
+}
+
+/* NOTES：本文ゴシックは一段階細く */
+.notes-content,
+.notes-content > p,
+.notes-content .notes-list,
+.notes-content .notes-list li {
+  font-family:
+    "Noto Sans JP",
+    "Yu Gothic",
+    "Hiragino Kaku Gothic ProN",
+    "Meiryo",
+    sans-serif;
+  font-weight: 300;
+}
+
+/* 見出しは明朝体を維持し、少し太く */
+.notes-content > h2,
+.notes-content > h3,
+.notes-content > h4 {
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", Georgia, serif;
+  font-weight: 600;
+}
+
+/* 本文の太さをブラウザ側で過度に補正しない */
+.notes-content {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* NOTES：文字の太さを再調整 */
+.notes-content > h2,
+.notes-content > h3,
+.notes-content > h4 {
+  font-weight: 700;
+}
+
+.notes-content,
+.notes-content > p,
+.notes-content .notes-list,
+.notes-content .notes-list li {
+  font-weight: 400;
+}
+
+
+/* HOME lower navigation hover */
+.home-links > a strong,
+.home-links > a b {
+  transition: color 0.2s ease;
+}
+
+.home-links > a:hover strong,
+.home-links > a:hover b,
+.home-links > a:focus-visible strong,
+.home-links > a:focus-visible b {
+  color: var(--mauve);
+}
+
+
+/* HOME bottom links: hover treatment matched to the main tiles on LINKS */
+.home-links > a {
+  transition: background-color .2s ease, color .2s ease;
+}
+.home-links > a:hover,
+.home-links > a:focus-visible {
+  background: var(--mauve, #a98eaa);
+  color: var(--ink, #30232f);
+}
+.home-links > a:focus-visible {
+  outline: 2px solid var(--plum, #351c35);
+  outline-offset: -2px;
+}
+
+
+/* COSTUME：最後の衣装とフッターの間隔を調整 */
+.costume-page {
+  padding-bottom: 48px;
+}
+
+@media (max-width: 760px) {
+  .costume-page {
+    padding-bottom: 36px;
+  }
+}
+
+
+/* COSTUME：フッターを画面下端に配置し、全幅で表示 */
+.costume-page-body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.costume-page-body .costume-page {
+  flex: 1 0 auto;
+  width: 100%;
+}
+
+.costume-page-body footer {
+  flex-shrink: 0;
+}
+
+
+/* HOME下部リンク：濃いプラム背景＋明るい文字で読みやすく */
+.home-links > a:hover,
+.home-links > a:focus-visible {
+  background-color: var(--plum, #351c35);
+  color: var(--white, #fffaf8);
+}
+
+.home-links > a:hover strong,
+.home-links > a:hover b,
+.home-links > a:focus-visible strong,
+.home-links > a:focus-visible b {
+  color: var(--white, #fffaf8);
+}
