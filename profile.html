@@ -1,0 +1,152 @@
+
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PROFILE | NAME</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .creator-credits {
+      margin: 42px 0 0;
+      padding-top: 22px;
+      border-top: 1px solid rgba(53, 28, 53, .18);
+    }
+    .creator-credits dl {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 42px;
+      margin: 0;
+    }
+    .creator-credits dl > div {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .creator-credits dt {
+      color: var(--muted);
+      font-size: .78rem;
+      letter-spacing: .06em;
+    }
+    .creator-credits dd {
+      margin: 0;
+      font-size: .88rem;
+    }
+    .creator-credits a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition: color .2s ease;
+    }
+    .creator-credits a:hover {
+      color: var(--plum);
+    }
+    @media (max-width: 600px) {
+      .creator-credits dl {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="wordmark" href="index.html"><img src="assets/images/logo.png" alt="HOME" style="display:block; width:auto; height:auto; max-width:180px; max-height:42px; object-fit:contain;"></a>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">MENU</button>
+  <nav id="site-nav" class="site-nav">
+    <a href="index.html">HOME</a>
+    <a href="notes.html">NOTES</a>
+    <a class="active" href="profile.html">PROFILE</a>
+    <a href="costume.html">COSTUME</a>
+    <a href="music.html">MUSIC</a>
+    <a href="songs.html">SONG LIST</a>
+    <a href="links.html">LINKS</a>
+  </nav>
+</header>
+
+<main class="subpage">
+
+  <header class="page-title">
+    <h1>Profile</h1>
+  </header>
+
+  <section class="profile-layout">
+
+    <div class="profile-art">
+      <img src="assets/images/profile.png" alt="プロフィールイラスト">
+    </div>
+
+    <div class="profile-info">
+
+      <h2>NAME</h2>
+
+      <h3>ACTIVITY</h3>
+      <p>
+        
+      </p>
+
+      <dl>
+        <dt>NAME</dt>
+        <dd>七藤ちはね</dd>
+
+        <dt>BIRTHDAY</dt>
+        <dd>07.24</dd>
+
+        <dt>DEBUT</dt>
+        <dd>2021.10.09</dd>
+
+        <dt>LIKE</dt>
+        <dd>音楽 / ゲーム</dd>
+      </dl>
+
+      <h3>COMMUNITY</h3>
+      <dl>
+        <dt>FAN MARK</dt>
+        <dd>💜🥀</dd>
+
+        <dt>MASCOT</dt>
+        <dd>ウィス(犬)・タリア(猫)</dd>
+
+        <dt>GENERAL TAG</dt>
+        <dd>#七藤ちはね</dd>
+
+        <dt>FAN ART TAG</dt>
+        <dd>#藤色美術展</dd>
+
+      </dl>
+
+    </div>
+  </section>
+
+  <section class="creator-credits" aria-label="Creator credits">
+    <dl>
+      <div>
+        <dt>モデル制作</dt>
+        <dd><a href="https://twitter.com/pal156" target="_blank" rel="noopener noreferrer">入鹿ぱる様 ↗</a></dd>
+      </div>
+      <div>
+        <dt>ロゴ制作</dt>
+        <dd><a href="https://twitter.com/kasesusi" target="_blank" rel="noopener noreferrer">加瀬様 ↗</a></dd>
+      </div>
+    </dl>
+  </section>
+
+  <a class="profile-costume-link" href="costume.html">
+    <span>
+      <strong>COSTUME</strong>
+      <small>衣装・三面図・全身イラストはこちら</small>
+    </span>
+    <b>↗</b>
+  </a>
+
+</main>
+
+<footer>
+  <span>© NANAFUJI CHIHANE</span>
+  <span>OFFICIAL WEBSITE</span>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

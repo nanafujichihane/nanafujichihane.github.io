@@ -1,0 +1,661 @@
+
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eee7e5">
+  <title>Official Website</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+/* HOME featured video cards - page-specific */
+.home-featured {
+  width: min(90%, 1100px);
+  margin: clamp(60px, 6vw, 80px) auto clamp(38px, 4vw, 52px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(30px, 3.2vw, 40px);
+}
+.home-feature-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  color: inherit;
+  text-decoration: none;
+}
+.home-feature-label {
+  min-height: 16px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted, #796c78);
+  font-family: Arial, sans-serif;
+  font-size: .72rem;
+  letter-spacing: .13em;
+}
+.live-indicator {
+  width: 7px;
+  height: 7px;
+  display: inline-block;
+  border-radius: 50%;
+  background: #b64a55;
+  box-shadow: 0 0 0 3px rgba(182,74,85,.12);
+}
+.home-feature-thumb {
+  aspect-ratio: 16 / 9;
+  background: var(--lavender, #cdbdc9);
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: background .25s ease;
+}
+.feature-play {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  padding-left: 2px;
+  color: var(--white, #fffaf8);
+  background: rgba(53,28,53,.78);
+  font-size: 13px;
+  transition: transform .25s ease, background .25s ease;
+}
+.home-feature-card:hover .home-feature-thumb,
+.home-feature-card:focus-visible .home-feature-thumb {
+  background: var(--mauve, #a98eaa);
+}
+.home-feature-card:hover .feature-play,
+.home-feature-card:focus-visible .feature-play {
+  transform: scale(1.08);
+  background: var(--plum, #351c35);
+}
+.home-feature-title {
+  color: var(--ink, #30232f);
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif;
+  font-size: .9rem;
+  font-weight: 400;
+  letter-spacing: .1em;
+}
+.home-feature-link {
+  color: var(--muted, #796c78);
+  font-family: Arial, sans-serif;
+  font-size: .68rem;
+  letter-spacing: .13em;
+}
+.home-feature-card:hover .home-feature-link { color: var(--plum, #351c35); }
+.home-feature-card:focus-visible { outline: 1px solid var(--plum, #351c35); outline-offset: 5px; }
+
+.home-links > a .eyebrow,
+.home-links > a small { display: none; }
+.home-links > a { position: relative; }
+.home-links > a strong { display: block; }
+@media (max-width: 600px) {
+  .home-featured { width: 90%; gap: 16px; margin-top: 42px; margin-bottom: 30px; }
+  .home-feature-label { font-size: .58rem; letter-spacing: .08em; }
+  .home-feature-title { font-size: .72rem; }
+  .home-feature-link { font-size: .58rem; }
+}
+</style>
+
+
+<style>
+/* HOME hero: text-only profile link and compact video zone */
+/* Restore the original main-visual blur-to-sharp loading effect. */
+.hero-scroll-stage .hero-art img {
+  filter: blur(12px);
+  transform: scale(1.035);
+  transition: filter 1.7s ease, transform 1.7s ease;
+}
+body.is-loaded .hero-scroll-stage .hero-art img {
+  filter: blur(0);
+  transform: scale(1);
+}
+.hero-profile-link {
+  position: absolute;
+  z-index: 4;
+  top: 43%;
+  right: 7%;
+  box-sizing: border-box;
+  width: clamp(180px, 18vw, 220px);
+  min-height: 44px;
+  padding: 11px 13px;
+  display: grid;
+  place-items: center;
+  color: rgba(238, 231, 229, .88);
+  font-family: Arial, sans-serif;
+  font-size: clamp(.92rem, 1.35vw, 1.08rem);
+  letter-spacing: .12em;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: color .25s ease, background .25s ease, border-color .25s ease;
+}
+.hero-profile-link span {
+  grid-area: 1 / 1;
+  display: block;
+  transition: opacity .22s ease;
+}
+.hero-profile-link {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(42px);
+  transition:
+    opacity .65s ease .44s,
+    transform .65s cubic-bezier(.22,.7,.25,1) .44s,
+    color .25s ease;
+}
+.hero-scroll-stage.is-revealed .hero-profile-link {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.hero-profile-hover { position: absolute; inset: 0; opacity: 0; }
+.hero-profile-link:hover .hero-profile-default,
+.hero-profile-link:focus-visible .hero-profile-default { opacity: 0; }
+.hero-profile-link:hover .hero-profile-hover,
+.hero-profile-link:focus-visible .hero-profile-hover { opacity: 1; }
+.hero-profile-link:hover,
+.hero-profile-link:focus-visible {
+  color: var(--white, #fffaf8);
+  background: var(--plum, #351c35);
+  border-color: transparent;
+}
+
+.hero-video-zone {
+  position: absolute;
+  z-index: 5;
+  right: 4.5%;
+  bottom: 5.5%;
+  width: min(39%, 520px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 22px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(42px);
+  transition:
+    opacity .65s ease .55s,
+    transform .65s cubic-bezier(.22,.7,.25,1) .55s;
+}
+.hero-scroll-stage.is-revealed .hero-video-zone {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.hero-video-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--ink, #30232f);
+  text-decoration: none;
+}
+.hero-video-thumb {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  background: rgba(205,189,201,.94);
+  transition: background .25s ease;
+}
+.hero-video-play {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding-left: 2px;
+  background: rgba(53,28,53,.82);
+  color: var(--white, #fffaf8);
+  font: 12px Arial, sans-serif;
+  transition: transform .25s ease;
+}
+.hero-video-caption {
+  color: rgba(238, 231, 229, .78);
+  font-family: Arial, sans-serif;
+  font-size: clamp(.55rem, .7vw, .68rem);
+  letter-spacing: .12em;
+  line-height: 1.4;
+  transition: color .25s ease;
+}
+.hero-video-card:hover .hero-video-thumb,
+.hero-video-card:focus-visible .hero-video-thumb { background: var(--mauve, #a98eaa); }
+.hero-video-card:hover .hero-video-caption,
+.hero-video-card:focus-visible .hero-video-caption { color: var(--white, #fffaf8); }
+.hero-video-card:hover .hero-video-play,
+.hero-video-card:focus-visible .hero-video-play { transform: scale(1.08); }
+.hero-video-card:focus-visible,
+.hero-profile-link:focus-visible { outline: 1px solid var(--plum); outline-offset: 5px; }
+.stream-caption .stream-live { display: none; }
+.hero-video-stream[data-live="true"] .stream-latest { display: none; }
+.hero-video-stream[data-live="true"] .stream-live { display: inline; }
+
+@media (max-width: 760px) {
+  .hero-profile-link {
+    top: 43%;
+    right: 5%;
+    width: 150px;
+    min-height: 36px;
+    padding: 8px 9px;
+    font-size: .68rem;
+  }
+  .hero-video-zone {
+    right: 4%;
+    bottom: 5%;
+    width: 52%;
+    gap: 9px;
+  }
+  .hero-video-card { gap: 5px; }
+  .hero-video-caption { font-size: .52rem; letter-spacing: .07em; }
+  .hero-video-play { width: 27px; height: 27px; font-size: 10px; }
+}
+@media (max-width: 420px) {
+  .hero-video-zone { width: 58%; }
+  .hero-profile-link { width: 128px; min-height: 32px; padding: 6px 7px; font-size: .58rem; }
+}
+</style>
+
+
+<style>
+/* HOME inline YouTube player */
+.hero-video-player-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 3vw, 42px);
+  box-sizing: border-box;
+  background: rgba(25, 16, 27, .88);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .22s ease, visibility .22s ease;
+}
+.hero-video-player-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.hero-video-player-frame {
+  position: relative;
+  width: min(100%, 1120px);
+  max-height: 100%;
+  aspect-ratio: 16 / 9;
+  background: #120f13;
+  box-shadow: 0 12px 50px rgba(0,0,0,.3);
+}
+.hero-video-player-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.hero-video-player-actions {
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+}
+.hero-video-player-actions a,
+.hero-video-player-actions button,
+.hero-video-confirm button,
+.hero-video-confirm a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 13px;
+  border: 1px solid rgba(255,250,248,.72);
+  background: rgba(48,35,47,.92);
+  color: #fffaf8;
+  font: 11px Arial, sans-serif;
+  letter-spacing: .08em;
+  text-decoration: none;
+  cursor: pointer;
+}
+.hero-video-player-actions button {
+  width: 38px;
+  padding: 0;
+  font-size: 20px;
+}
+.hero-video-confirm {
+  width: min(100%, 460px);
+  padding: clamp(24px, 4vw, 42px);
+  box-sizing: border-box;
+  text-align: center;
+  color: #fffaf8;
+  background: rgba(53,28,53,.96);
+  border: 1px solid rgba(255,250,248,.4);
+}
+.hero-video-confirm p {
+  margin: 0 0 22px;
+  font-family: Arial, sans-serif;
+  font-size: clamp(.85rem, 1.4vw, 1rem);
+  letter-spacing: .12em;
+}
+.hero-video-confirm-title {
+  display: block;
+  margin-bottom: 10px;
+  color: #cdbdc9;
+  font-size: .68rem;
+  letter-spacing: .16em;
+}
+.hero-video-confirm-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+.hero-video-confirm button[data-action="play"] {
+  background: #fffaf8;
+  color: #351c35;
+  border-color: #fffaf8;
+}
+.hero-video-confirm button[data-action="cancel"] { background: transparent; }
+@media (max-width: 600px) {
+  .hero-video-player-overlay { padding: 12px; }
+  .hero-video-player-frame { width: 100%; }
+  .hero-video-player-actions { top: 7px; right: 7px; gap: 5px; }
+  .hero-video-player-actions a { min-height: 32px; padding: 0 9px; font-size: 9px; }
+  .hero-video-player-actions button { width: 32px; min-height: 32px; }
+}
+</style>
+
+</head>
+<body>
+
+<header class="site-header">
+  <a class="wordmark" href="index.html" aria-label="HOME"><img src="assets/images/logo.png" alt="HOME" style="display:block; width:auto; height:auto; max-width:180px; max-height:42px; object-fit:contain;"></a>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">MENU</button>
+  <nav id="site-nav" class="site-nav">
+    <a class="active" href="index.html">HOME</a>
+    <a href="notes.html">NOTES</a>
+    <a href="profile.html">PROFILE</a>
+    <a href="costume.html">COSTUME</a>
+    <a href="music.html">MUSIC</a>
+    <a href="songs.html">SONG LIST</a>
+    <a href="links.html">LINKS</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- メインビジュアル・スクロール演出 -->
+  <section class="hero-scroll-scene">
+    <div class="hero-scroll-stage">
+
+      <div class="hero-art">
+        <img src="assets/images/HP_main_image.png" alt="メインビジュアル">
+      </div>
+
+      <div class="hero-social-links" aria-label="SNS links">
+        <a class="hero-social-link hero-social-youtube"
+           href="https://www.youtube.com/@nnfjchn"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="YouTube">
+          <span>YOUTUBE</span>
+          <b>↗</b>
+        </a>
+        <a class="hero-social-link hero-social-x"
+           href="https://twitter.com/nnfjchn"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="X (Twitter)">
+          <span>X / TWITTER</span>
+          <b>↗</b>
+        </a>
+      </div>
+
+      <a class="hero-profile-link" href="profile.html" aria-label="PROFILE">
+        <span class="hero-profile-default">OFFICIAL WEBSITE</span>
+        <span class="hero-profile-hover">PROFILE ↗</span>
+      </a>
+
+      <!-- HERO VIDEO LINKS -->
+      <div class="hero-video-zone" aria-label="Latest videos">
+        <a class="hero-video-card hero-video-stream" data-live="false" href="https://www.youtube.com/@nnfjchn/streams"
+           target="_blank" rel="noopener noreferrer">
+          <span class="hero-video-thumb stream-thumb">
+            <span class="hero-video-play">▶</span>
+          </span>
+          <span class="hero-video-caption stream-caption">
+            <span class="stream-latest">LATEST STREAM</span>
+            <span class="stream-live">LIVE NOW</span>
+          </span>
+        </a>
+        <a class="hero-video-card hero-video-cover" href="https://www.youtube.com/playlist?list=PLEF_3dZ-O96VCpHF3ZQ2PZ1ZvFsO7vgCo"
+           target="_blank" rel="noopener noreferrer">
+          <span class="hero-video-thumb cover-thumb">
+            <span class="hero-video-play">▶</span>
+          </span>
+          <span class="hero-video-caption">LATEST COVER</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="home-links">
+    <a href="notes.html">
+      <strong>NOTES</strong>
+      <b>↗</b>
+    </a>
+    <a href="profile.html">
+      <strong>PROFILE</strong>
+      <b>↗</b>
+    </a>
+    <a href="costume.html">
+      <strong>COSTUME</strong>
+      <b>↗</b>
+    </a>
+    <a href="music.html">
+      <strong>MUSIC</strong>
+      <b>↗</b>
+    </a>
+    <a href="songs.html">
+      <strong>SONG LIST</strong>
+      <b>↗</b>
+    </a>
+    <a href="links.html">
+      <strong>LINKS</strong>
+      <b>↗</b>
+    </a>
+  </section>
+
+</main>
+
+<footer>
+  <span>© NANAFUJI CHIHANE</span>
+  <span>OFFICIAL WEBSITE</span>
+</footer>
+
+
+<!-- YouTube動画情報の自動取得（GAS） -->
+<script>
+(() => {
+  // GASをウェブアプリとしてデプロイした後、発行URLに置き換えてください。
+  const YOUTUBE_HP_GAS_URL = 'https://script.google.com/macros/s/AKfycbz_BgJJtyNiYwFjc74c5MaUr8x954jGNrhk1nfTWTIsoOW_92HNS0kB26yyOX_QJWIX/exec';
+  if (!YOUTUBE_HP_GAS_URL.startsWith('https://script.google.com/')) return;
+
+  const streamCard = document.querySelector('.hero-video-stream');
+  const coverCard = document.querySelector('.hero-video-cover');
+  const streamThumb = document.querySelector('.stream-thumb');
+  const coverThumb = document.querySelector('.cover-thumb');
+
+  const applyVideo = (card, thumb, video, isStream) => {
+    if (!card || !thumb || !video || !video.url) return;
+    card.href = video.url;
+    card.title = video.title || '';
+    card.setAttribute('aria-label', (video.title || (isStream ? 'Latest stream' : 'Latest cover')) + ' — ' + (video.label || ''));
+    if (video.thumbnail) {
+      thumb.style.backgroundImage = `linear-gradient(rgba(35,20,35,.08), rgba(35,20,35,.08)), url("${video.thumbnail}")`;
+      thumb.style.backgroundSize = 'cover';
+      thumb.style.backgroundPosition = 'center';
+    }
+    if (isStream) {
+      const live = video.live === true || video.label === 'LIVE NOW';
+      card.dataset.live = live ? 'true' : 'false';
+    }
+  };
+
+  const callbackName = 'youtubeHpCallback_' + Math.random().toString(36).slice(2);
+  const script = document.createElement('script');
+  window[callbackName] = (data) => {
+    if (!data || !data.ok) return;
+    applyVideo(streamCard, streamThumb, data.stream, true);
+    applyVideo(coverCard, coverThumb, data.cover, false);
+    delete window[callbackName];
+    script.remove();
+  };
+  script.onerror = () => { delete window[callbackName]; script.remove(); };
+  script.src = YOUTUBE_HP_GAS_URL + (YOUTUBE_HP_GAS_URL.includes('?') ? '&' : '?') + 'callback=' + callbackName;
+  document.head.appendChild(script);
+})();
+</script>
+
+
+<!-- サムネイルをクリック → 再生確認 → 明示的に再生 -->
+<script>
+(() => {
+  const stage = document.querySelector('.hero-scroll-stage');
+  const cards = [...document.querySelectorAll('.hero-video-card')];
+  if (!stage || !cards.length) return;
+
+  const overlay = document.createElement('div');
+  overlay.className = 'hero-video-player-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', '動画再生');
+  overlay.innerHTML = `
+    <div class="hero-video-confirm" data-panel="confirm">
+      <span class="hero-video-confirm-title">VIDEO PLAYER</span>
+      <p>この動画を再生しますか？</p>
+      <div class="hero-video-confirm-actions">
+        <button type="button" data-action="play">再生する</button>
+        <a data-action="youtube" href="#" target="_blank" rel="noopener noreferrer">YouTubeで見る ↗</a>
+        <button type="button" data-action="cancel">閉じる</button>
+      </div>
+    </div>
+    <div class="hero-video-player-frame" data-panel="player" hidden>
+      <div class="hero-video-player-actions">
+        <a data-action="youtube" href="#" target="_blank" rel="noopener noreferrer">YouTubeで見る ↗</a>
+        <button type="button" data-action="close" aria-label="閉じる">×</button>
+      </div>
+      <div data-player-host style="width:100%;height:100%"></div>
+    </div>`;
+  stage.appendChild(overlay);
+
+  const confirmPanel = overlay.querySelector('[data-panel="confirm"]');
+  const playerPanel = overlay.querySelector('[data-panel="player"]');
+  const playerHost = overlay.querySelector('[data-player-host]');
+  let selectedUrl = '';
+  let selectedId = '';
+
+  const youtubeId = (url) => {
+    try {
+      const u = new URL(url);
+      if (u.hostname === 'youtu.be') return u.pathname.slice(1).split('/')[0];
+      if (u.searchParams.get('v')) return u.searchParams.get('v');
+      const parts = u.pathname.split('/').filter(Boolean);
+      const marker = parts.findIndex(x => ['live', 'shorts', 'embed'].includes(x));
+      return marker >= 0 ? parts[marker + 1] : '';
+    } catch (_) { return ''; }
+  };
+
+  const setYoutubeLinks = (url) => overlay.querySelectorAll('[data-action="youtube"]').forEach(a => { a.href = url; });
+  const openConfirm = (url) => {
+    selectedUrl = url;
+    selectedId = youtubeId(url);
+    setYoutubeLinks(url);
+    confirmPanel.hidden = false;
+    playerPanel.hidden = true;
+    playerHost.replaceChildren();
+    overlay.classList.add('is-open');
+  };
+  const close = () => {
+    overlay.classList.remove('is-open');
+    playerHost.replaceChildren(); // 閉じたら再生も停止
+    selectedUrl = '';
+    selectedId = '';
+  };
+  const play = () => {
+    if (!selectedId) {
+      window.open(selectedUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    confirmPanel.hidden = true;
+    playerPanel.hidden = false;
+    const iframe = document.createElement('iframe');
+    // 通常のYouTube埋め込みを使用し、Refererを送ってエラー153を回避する
+    iframe.src = 'https://www.youtube.com/embed/' + encodeURIComponent(selectedId) + '?autoplay=1&rel=0';
+    iframe.title = 'YouTube video player';
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    playerHost.appendChild(iframe);
+  };
+
+  // target=_blank の通常遷移や他スクリプトより先にクリックを捕まえる
+  cards.forEach(card => card.addEventListener('click', event => {
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    const url = card.getAttribute('href') || card.href;
+    if (url) openConfirm(url);
+  }, true));
+  overlay.addEventListener('click', event => {
+    const action = event.target.closest('[data-action]')?.dataset.action;
+    if (action === 'play') play();
+    if (action === 'cancel' || action === 'close') close();
+    if (event.target === overlay) close();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && overlay.classList.contains('is-open')) close();
+  });
+})();
+</script>
+
+<script src="assets/js/main.js"></script>
+
+<script>
+(() => {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.body.classList.add('is-loaded');
+    });
+  });
+})();
+</script>
+
+<!-- スクロール時のPROFILE表示 -->
+<script>
+(() => {
+  const scene = document.querySelector('.hero-scroll-scene');
+  const stage = document.querySelector('.hero-scroll-stage');
+
+  if (!scene || !stage) return;
+
+  const update = () => {
+    const rect = scene.getBoundingClientRect();
+    const progress =
+      -rect.top / (scene.offsetHeight - stage.offsetHeight);
+
+    stage.classList.toggle('is-revealed', progress >= 0.18);
+  };
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+
+  update();
+})();
+</script>
+
+</body>
+</html>

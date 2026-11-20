@@ -1,0 +1,316 @@
+
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>MUSIC | NAME</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .music-section {
+      margin-top: 64px;
+    }
+
+    .music-section h2 {
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--plum);
+      font-family: serif;
+      font-size: 28px;
+      font-weight: normal;
+      letter-spacing: 0.08em;
+    }
+
+    .music-section-intro {
+      margin: -12px 0 24px;
+      color: #777;
+      font-size: 13px;
+    }
+
+    .music-original {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .music-original-image {
+      display: block;
+      overflow: hidden;
+      background: #e9e2d8;
+    }
+
+    .music-original-image img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      transition: opacity 0.3s;
+    }
+
+    .music-original-image:hover img {
+      opacity: 0.8;
+    }
+
+    .music-original-info b {
+      display: block;
+      margin-bottom: 12px;
+      font-family: serif;
+      font-size: 24px;
+      font-weight: normal;
+    }
+
+    .music-video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px 20px;
+    }
+
+    .music-video-item {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      border: none;
+      outline: none;
+    }
+
+    /* サムネイルの表示調整 */
+    .music-video-thumb {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      background: #e9e2d8;
+      aspect-ratio: 16 / 9;
+      line-height: 0;
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    .music-video-thumb::before,
+    .music-video-thumb::after {
+      display: none !important;
+      content: none !important;
+    }
+
+    .music-video-thumb img {
+      display: block;
+      width: calc(100% + 2px);
+      height: calc(100% + 2px);
+      margin: -1px;
+      object-fit: cover;
+      vertical-align: top;
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+      transition: opacity 0.3s;
+    }
+
+    .music-video-item:hover .music-video-thumb img {
+      opacity: 0.85;
+    }
+
+    .music-video-item b {
+      display: block;
+      margin-top: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: normal;
+    }
+
+    /* WATCH ON YOUTUBE 共通デザイン */
+    .music-section .text-link {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 14px;
+      border: 1px solid transparent;
+      color: var(--plum);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    /* ホバー時：濃い紫の背景＋白文字 */
+    .music-section .text-link:hover {
+      background: var(--plum);
+      border-color: var(--plum);
+      color: #fff !important;
+    }
+
+    .music-more {
+      display: block;
+      width: fit-content;
+      min-width: 220px;
+      margin: 36px auto 0;
+      padding: 14px 30px;
+      border: 1px solid var(--plum);
+      color: var(--plum);
+      text-align: center;
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .music-more:hover {
+      background: var(--plum);
+      color: #fff;
+    }
+
+    .music-loading,
+    .music-error,
+    .music-empty {
+      padding: 28px 12px;
+      color: #888;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .music-error {
+      color: var(--plum);
+    }
+
+    @media (max-width: 700px) {
+      .music-section {
+        margin-top: 48px;
+      }
+
+      .music-section h2 {
+        font-size: 24px;
+      }
+
+      .music-original {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .music-original-info b {
+        font-size: 20px;
+      }
+
+      .music-video-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px 12px;
+      }
+
+      .music-more {
+        min-width: 190px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <a class="wordmark" href="index.html"><img src="assets/images/logo.png" alt="HOME" style="display:block; width:auto; height:auto; max-width:180px; max-height:42px; object-fit:contain;"></a>
+
+    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">
+      MENU
+    </button>
+
+    <nav id="site-nav" class="site-nav">
+      <a href="index.html">HOME</a>
+      <a href="notes.html">NOTES</a>
+      <a href="profile.html">PROFILE</a>
+      <a href="costume.html">COSTUME</a>
+      <a class="active" href="music.html">MUSIC</a>
+      <a href="songs.html">SONG LIST</a>
+      <a href="links.html">LINKS</a>
+    </nav>
+  </header>
+
+  <main class="subpage">
+
+    <header class="page-title">
+      <h1>Music</h1>
+    </header>
+
+    <!-- ORIGINAL -->
+
+    <section class="music-section">
+      <h2>Original</h2>
+
+      <div class="music-original">
+        <a
+          class="music-original-image"
+          href="https://youtu.be/3a-Bv6sPxdQ"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="https://img.youtube.com/vi/3a-Bv6sPxdQ/hqdefault.jpg"
+            alt="雨に芽ぐむ"
+          >
+        </a>
+
+        <div class="music-original-info">
+          <p class="eyebrow">ORIGINAL</p>
+          <b>雨に芽ぐむ</b>
+          <a
+            class="text-link"
+            href="https://youtu.be/3a-Bv6sPxdQ"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            WATCH ON YOUTUBE ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- COVER -->
+
+    <section class="music-section">
+      <h2>Cover</h2>
+      <p class="music-section-intro">歌ってみた</p>
+
+      <div id="cover-videos" class="music-video-grid">
+        <p class="music-loading">Loading...</p>
+      </div>
+
+      <a
+        class="music-more"
+        href="https://www.youtube.com/playlist?list=PLEF_3dZ-O96VCpHF3ZQ2PZ1ZvFsO7vgCo"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        AND MORE / VIEW ALL COVERS ↗
+      </a>
+    </section>
+
+    <!-- COLLABORATION -->
+
+    <section class="music-section">
+      <h2>Collaboration</h2>
+      <p class="music-section-intro">コラボレーション動画</p>
+
+      <div id="collaboration-videos" class="music-video-grid">
+        <p class="music-loading">Loading...</p>
+      </div>
+
+      <a
+        class="music-more"
+        href="https://www.youtube.com/playlist?list=PLEF_3dZ-O96UsDBpeewCX5whOrPeONCzJ"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        AND MORE / VIEW ALL COLLABORATIONS ↗
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>© NANAFUJI CHIHANE</span>
+    <span>OFFICIAL WEBSITE</span>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/music.js"></script>
+
+</body>
+</html>

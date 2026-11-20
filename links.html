@@ -1,0 +1,154 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>LINKS | NAME</title><link rel="stylesheet" href="assets/css/style.css">
+<style>
+/* LINKS page: page-specific tile layout */
+.links-page .page-title {
+  margin-bottom: 2.5rem;
+}
+.social-grid {
+  width: 88%;
+  max-width: 760px;
+  margin: 0 auto 5rem;
+}
+.social-grid-main,
+.social-grid-sub {
+  display: grid;
+  gap: 12px;
+}
+.social-grid-main {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 12px;
+}
+.social-grid-sub {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.social-tile {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  position: relative;
+  min-width: 0;
+  text-decoration: none;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.social-tile span,
+.social-tile small {
+  overflow-wrap: anywhere;
+}
+.social-tile-main .tile-name {
+  display: block;
+}
+.social-tile-main .tile-description {
+  display: block;
+  max-height: 0;
+  margin-top: 0;
+  overflow: hidden;
+  opacity: 0;
+  font-size: .48em;
+  line-height: 1.65;
+  letter-spacing: .04em;
+  transition: max-height .25s ease, margin-top .25s ease, opacity .2s ease;
+}
+.social-tile-main:hover .tile-description,
+.social-tile-main:focus-visible .tile-description {
+  max-height: 4em;
+  margin-top: 9px;
+  opacity: 1;
+}
+.social-tile b {
+  align-self: flex-end;
+  font-size: .85em;
+  font-weight: 400;
+  line-height: 1;
+  opacity: .7;
+}
+.social-tile-main {
+  aspect-ratio: 1 / .88;
+  padding: clamp(14px, 2.2vw, 24px);
+  background: var(--plum, #351c35);
+  color: var(--white, #fffaf8);
+  font-size: clamp(16px, 2vw, 23px);
+}
+.social-tile-sub {
+  aspect-ratio: 1.2 / 1;
+  padding: clamp(7px, 1.1vw, 13px);
+  background: var(--lavender, #cdbdc9);
+  color: var(--ink, #30232f);
+  font-size: clamp(10px, 1.05vw, 13px);
+}
+/* Small tiles: same pale background as the site header */
+.social-tile-sub:hover,
+.social-tile-sub:focus-visible {
+  background: var(--plum, #351c35);
+  color: var(--white, #fffaf8);
+}
+/* Main tiles: muted mauve instead of the previous dark hover */
+.social-tile-main:hover,
+.social-tile-main:focus-visible {
+  background: var(--mauve, #a98eaa);
+  color: var(--ink, #30232f);
+}
+.social-tile:focus-visible {
+  outline: 2px solid var(--mauve, #a98eaa);
+  outline-offset: 3px;
+}
+@media (max-width: 600px) {
+  .social-grid {
+    width: 94%;
+  }
+  .social-grid-main,
+  .social-grid-sub {
+    gap: 8px;
+  }
+  .social-grid-main {
+    margin-bottom: 8px;
+  }
+  .social-tile-main {
+    padding: 12px;
+    font-size: 16px;
+  }
+  .social-tile-sub {
+    padding: 8px;
+    font-size: 11px;
+  }
+}
+@media (max-width: 380px) {
+  .social-grid-sub {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+</style>
+
+</head><body>
+<header class="site-header">
+<a class="wordmark" href="index.html"><img src="assets/images/logo.png" alt="HOME" style="display:block; width:auto; height:auto; max-width:180px; max-height:42px; object-fit:contain;"></a>
+<button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">MENU</button>
+<nav id="site-nav" class="site-nav"><a class="" href="index.html">HOME</a><a class="" href="notes.html">NOTES</a><a class="" href="profile.html">PROFILE</a><a class="" href="costume.html">COSTUME</a><a class="" href="music.html">MUSIC</a><a class="" href="songs.html">SONG LIST</a><a class="active" href="links.html">LINKS</a></nav></header>
+<main class="subpage links-page">
+  <header class="page-title">
+
+    <h1>Links</h1>
+
+  </header>
+
+  <section class="social-grid" aria-label="各種リンク">
+    <div class="social-grid-main">
+      <a class="social-tile social-tile-main" href="https://www.youtube.com/@nnfjchn" target="_blank" rel="noopener noreferrer"><span class="tile-name">YouTube</span><small class="tile-description">動画・配信</small><b>↗</b></a>
+      <a class="social-tile social-tile-main" href="https://twitter.com/nnfjchn" target="_blank" rel="noopener noreferrer"><span class="tile-name">X / Twitter</span><small class="tile-description">配信告知・活動のお知らせ・日々の雑談</small><b>↗</b></a>
+      <a class="social-tile social-tile-main" href="https://nnfjchn.fanbox.cc/" target="_blank" rel="noopener noreferrer"><span class="tile-name">FANBOX</span><small class="tile-description">ファンクラブ／ブログ・限定特典</small><b>↗</b></a>
+      <a class="social-tile social-tile-main" href="https://nanafuji.booth.pm/" target="_blank" rel="noopener noreferrer"><span class="tile-name">BOOTH</span><small class="tile-description">グッズ販売</small><b>↗</b></a>
+    </div>
+
+    <div class="social-grid-sub">
+      <a class="social-tile social-tile-sub" href="https://www.youtube.com/@nnfjchn_sub" target="_blank" rel="noopener noreferrer"><span>YouTube sub</span><b>↗</b></a>
+      <a class="social-tile social-tile-sub" href="https://gi-pt.com/main/wishlist/fan-view/3a12c931-389f-a032-fa95-b3a43ac9eb2b" target="_blank" rel="noopener noreferrer"><span>Gipt</span><b>↗</b></a>
+      <a class="social-tile social-tile-sub" href="https://www.tiktok.com/@nnfjchnn" target="_blank" rel="noopener noreferrer"><span>TikTok</span><b>↗</b></a>
+      <a class="social-tile social-tile-sub" href="https://twitcasting.tv/nnfjchn" target="_blank" rel="noopener noreferrer"><span>ツイキャス</span><b>↗</b></a>
+      <a class="social-tile social-tile-sub" href="https://www.twitch.tv/nanafuji_chihane" target="_blank" rel="noopener noreferrer"><span>Twitch</span><b>↗</b></a>
+      <a class="social-tile social-tile-sub" href="https://ofuse.me/nnfjchn" target="_blank" rel="noopener noreferrer"><span>OFUSE</span><b>↗</b></a>
+      <a class="social-tile social-tile-sub" href="https://mixi.social/@nnfjchn" target="_blank" rel="noopener noreferrer"><span>mixi2</span><b>↗</b></a>
+      <a class="social-tile social-tile-sub" href="https://bsky.app/profile/nnfjchn.bsky.social" target="_blank" rel="noopener noreferrer"><span>Bluesky</span><b>↗</b></a>
+    </div>
+  </section>
+</main><footer><span>© NANAFUJI CHIHANE</span><span>OFFICIAL WEBSITE</span></footer><script src="assets/js/main.js"></script></body></html>

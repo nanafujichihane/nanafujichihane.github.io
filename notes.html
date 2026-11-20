@@ -1,0 +1,117 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>NOTES | NAME</title><link rel="stylesheet" href="assets/css/style.css"></head><body>
+<header class="site-header">
+<a class="wordmark" href="index.html"><img src="assets/images/logo.png" alt="HOME" style="display:block; width:auto; height:auto; max-width:180px; max-height:42px; object-fit:contain;"></a>
+<button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">MENU</button>
+<nav id="site-nav" class="site-nav"><a class="" href="index.html">HOME</a><a class="active" href="notes.html">NOTES</a><a class="" href="profile.html">PROFILE</a><a class="" href="costume.html">COSTUME</a><a class="" href="music.html">MUSIC</a><a class="" href="songs.html">SONG LIST</a><a class="" href="links.html">LINKS</a></nav></header><main class="subpage"><header class="page-title">
+  <h1>Notes</h1>
+  <div class="notes-intro">
+    <p class="notes-intro-title">活動方針・注意事項等</p>
+    <p>この文章は予告なく変更・追記される場合があります。</p>
+    <p class="notes-updated">最終更新：2026.11.18.</p>
+  </div>
+</header>
+<nav class="notes-toc" id="notes-toc" aria-label="NOTES目次"><p class="notes-toc-title">CONTENTS</p><ol id="notes-toc-list"></ol></nav>
+<div class="notes-content" id="notes-content">
+  <p class="notes-loading">読み込み中です…</p>
+</div>
+<p class="notes-error" id="notes-error" hidden>NOTESを読み込めませんでした。時間をおいて再度お試しください。</p>
+<script>
+  // Google Apps Script のウェブアプリURL
+  const NOTES_API_URL = "https://script.google.com/macros/s/AKfycbyA78bKrhIaxY-IuCVprrNnVuwC9Q3eB3d1bYJFV-jV0ab8RnLL0YrGUCryf7w58_eORg/exec";
+
+  function renderNotes(data) {
+    const container = document.getElementById("notes-content");
+    const error = document.getElementById("notes-error");
+    const toc = document.getElementById("notes-toc");
+    const tocList = document.getElementById("notes-toc-list");
+
+    if (!data || data.success !== true || !Array.isArray(data.blocks)) {
+      container.hidden = true;
+      toc.hidden = true;
+      error.hidden = false;
+      return;
+    }
+
+    container.replaceChildren();
+    tocList.replaceChildren();
+
+    let currentList = null;
+    let currentListType = null;
+    let currentListLevel = -1;
+    let headingIndex = 0;
+    const tocItems = [];
+
+    function closeList() {
+      currentList = null;
+      currentListType = null;
+      currentListLevel = -1;
+    }
+
+    data.blocks.forEach((block) => {
+      if (!block || typeof block.text !== "string") return;
+
+      if (block.type === "listItem") {
+        const level = Math.max(0, Number(block.nestingLevel) || 0);
+        const glyph = String(block.glyphType || "");
+        const listType = /NUMBER|ALPHA|ROMAN/i.test(glyph) ? "ol" : "ul";
+
+        if (!currentList || currentListType !== listType || currentListLevel !== level) {
+          const list = document.createElement(listType);
+          list.className = "notes-list";
+          list.dataset.level = String(level);
+          container.appendChild(list);
+          currentList = list;
+          currentListType = listType;
+          currentListLevel = level;
+        }
+
+        const item = document.createElement("li");
+        item.textContent = block.text;
+        currentList.appendChild(item);
+        return;
+      }
+
+      closeList();
+
+      if (block.type === "heading") {
+        const level = Math.min(3, Math.max(1, Number(block.level) || 1));
+        const heading = document.createElement("h" + (level + 1));
+        const anchor = "notes-section-" + (++headingIndex);
+        heading.id = anchor;
+        heading.textContent = block.text;
+        heading.className = "notes-heading notes-heading-" + level;
+        container.appendChild(heading);
+
+        const tocItem = document.createElement("li");
+        tocItem.className = "notes-toc-level-" + level;
+        const link = document.createElement("a");
+        link.href = "#" + anchor;
+        link.textContent = block.text;
+        tocItem.appendChild(link);
+        tocList.appendChild(tocItem);
+        tocItems.push(tocItem);
+      } else if (block.type === "paragraph") {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = block.text;
+        container.appendChild(paragraph);
+      }
+    });
+
+    toc.hidden = tocItems.length === 0;
+
+    if (container.children.length === 0) {
+      container.textContent = "掲載内容はありません。";
+    }
+  }
+
+  window.renderNotes = renderNotes;
+
+  const notesScript = document.createElement("script");
+  notesScript.src = NOTES_API_URL + "?callback=renderNotes";
+  notesScript.onerror = function () {
+    document.getElementById("notes-content").hidden = true;
+    document.getElementById("notes-toc").hidden = true;
+    document.getElementById("notes-error").hidden = false;
+  };
+  document.head.appendChild(notesScript);
+</script></main><footer><span>© NANAFUJI CHIHANE</span><span>OFFICIAL WEBSITE</span></footer><script src="assets/js/main.js"></script></body></html>
