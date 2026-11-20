@@ -612,7 +612,16 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     event.stopPropagation();
     event.stopImmediatePropagation();
     const url = card.getAttribute('href') || card.href;
-    if (url) openConfirm(url);
+    if (!url) return;
+
+    // スマホでは確認画面・埋め込み再生を挟まず、YouTubeへ直接移動
+    if (window.matchMedia('(max-width: 760px)').matches) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    // PCでは従来どおり、再生確認後にページ内プレイヤーを表示
+    openConfirm(url);
   }, true));
   overlay.addEventListener('click', event => {
     const action = event.target.closest('[data-action]')?.dataset.action;
