@@ -370,136 +370,7 @@ body.is-loaded .hero-scroll-stage .hero-art img {
 
 
 
-<style>
-/* Mobile HOME layout: keep the main visual in its own image area */
-.hero-video-mobile-nav { display: none; }
-@media (max-width: 760px) {
-  .hero-scroll-scene {
-    height: auto !important;
-    min-height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    position: relative !important;
-  }
-  .hero-scroll-stage {
-    position: relative !important;
-    top: auto !important;
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: visible !important;
-    display: block !important;
-    transform: none !important;
-  }
-  /* Image occupies the full intended hero area; preserve proportions. */
-  .hero-scroll-stage .hero-art {
-    position: relative !important;
-    inset: auto !important;
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
-    aspect-ratio: 5 / 3 !important;
-    margin: 0 !important;
-    overflow: hidden !important;
-  }
-  .hero-scroll-stage .hero-art img {
-    display: block !important;
-    width: 100% !important;
-    height: 100% !important;
-    max-height: none !important;
-    object-fit: cover !important;
-    object-position: center !important;
-  }
-  /* Keep social/profile links over the artwork, not over the video list. */
-  .hero-scroll-stage .hero-social-links {
-    position: absolute !important;
-    z-index: 4 !important;
-    left: 5% !important;
-    top: 50% !important;
-    width: clamp(58px, 16vw, 88px) !important;
-    transform: translateY(-50%) !important;
-    gap: 10px !important;
-  }
-  .hero-scroll-stage .hero-social-link {
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    transform: none !important;
-    padding: 7px !important;
-    font-size: .48rem !important;
-  }
-  .hero-scroll-stage .hero-profile-link {
-    position: absolute !important;
-    z-index: 4 !important;
-    top: 50% !important;
-    right: 4% !important;
-    width: min(42vw, 180px) !important;
-    min-height: 36px !important;
-    height: auto !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    transform: translateY(-50%) !important;
-    padding: 8px 9px !important;
-    font-size: .64rem !important;
-  }
-  /* Videos are a separate block beneath the hero image. */
-  .hero-scroll-stage .hero-video-zone {
-    position: relative !important;
-    inset: auto !important;
-    z-index: 5 !important;
-    display: block !important;
-    width: 84% !important;
-    max-width: 460px !important;
-    margin: 22px auto 28px !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    transform: none !important;
-    transition: none !important;
-  }
-  .hero-video-card { width: 100% !important; gap: 8px !important; }
-  .hero-video-card:not(.is-mobile-active) { display: none !important; }
-  .hero-video-thumb { width: 100% !important; aspect-ratio: 16 / 9 !important; }
-  .hero-video-caption {
-    color: #351c35 !important;
-    font-size: clamp(.72rem, 2.8vw, .88rem) !important;
-    font-weight: 600 !important;
-    letter-spacing: .12em !important;
-    line-height: 1.5 !important;
-    text-shadow: none !important;
-  }
-  .hero-video-mobile-nav {
-    position: absolute;
-    z-index: 8;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    pointer-events: none;
-  }
-  .hero-video-mobile-nav button {
-    width: 34px;
-    height: 42px;
-    display: grid;
-    place-items: center;
-    padding: 0;
-    border: 1px solid rgba(53,28,53,.32);
-    border-radius: 0;
-    background: rgba(238,231,229,.94);
-    color: #351c35;
-    font: 22px/1 Georgia,serif;
-    cursor: pointer;
-    pointer-events: auto;
-    box-shadow: 0 2px 8px rgba(35,20,35,.08);
-  }
-}
-@media (max-width: 420px) {
-  .hero-scroll-stage .hero-video-zone { width: 84% !important; margin: 18px auto 24px !important; }
-  .hero-video-mobile-nav button { width: 30px; height: 38px; font-size: 20px; }
-}
-</style>
+
 
 </head>
 <body>
@@ -806,20 +677,23 @@ body.is-loaded .hero-scroll-stage .hero-art img {
 (() => {
   const scene = document.querySelector('.hero-scroll-scene');
   const stage = document.querySelector('.hero-scroll-stage');
-
   if (!scene || !stage) return;
+
+  // Mobile: show links immediately and do not run the scroll-reveal effect.
+  if (window.matchMedia('(max-width: 760px)').matches) {
+    stage.classList.add('is-revealed');
+    return;
+  }
 
   const update = () => {
     const rect = scene.getBoundingClientRect();
-    const progress =
-      -rect.top / (scene.offsetHeight - stage.offsetHeight);
-
+    const distance = scene.offsetHeight - stage.offsetHeight;
+    const progress = distance > 0 ? -rect.top / distance : 0;
     stage.classList.toggle('is-revealed', progress >= 0.18);
   };
 
   window.addEventListener('scroll', update, { passive: true });
   window.addEventListener('resize', update);
-
   update();
 })();
 </script>
