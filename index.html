@@ -476,7 +476,7 @@ body.is-loaded .hero-scroll-stage .hero-art img {
 </main>
 
 <footer>
-  <span>©</span>
+  <span>© NANAFUJI CHIHANE</span>
   <span>OFFICIAL WEBSITE</span>
 </footer>
 
@@ -496,6 +496,9 @@ body.is-loaded .hero-scroll-stage .hero-art img {
   const applyVideo = (card, thumb, video, isStream) => {
     if (!card || !thumb || !video || !video.url) return;
     card.href = video.url;
+    if (video.videoId || video.id) card.dataset.videoId = video.videoId || video.id;
+    if (video.channelId) card.dataset.channelId = video.channelId;
+    if (video.embedUrl) card.dataset.embedUrl = video.embedUrl;
     card.title = video.title || '';
     card.setAttribute('aria-label', (video.title || (isStream ? 'Latest stream' : 'Latest cover')) + ' — ' + (video.label || ''));
     if (video.thumbnail) {
@@ -576,7 +579,7 @@ body.is-loaded .hero-scroll-stage .hero-art img {
   const setYoutubeLinks = (url) => overlay.querySelectorAll('[data-action="youtube"]').forEach(a => { a.href = url; });
   const openConfirm = (url) => {
     selectedUrl = url;
-    selectedId = youtubeId(url);
+    selectedId = youtubeId(url) || card.dataset.videoId || '';
     setYoutubeLinks(url);
     confirmPanel.hidden = false;
     playerPanel.hidden = true;
@@ -590,15 +593,42 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     selectedId = '';
   };
   const play = () => {
-    if (!selectedId) {
-      window.open(selectedUrl, '_blank', 'noopener,noreferrer');
+    const activeCard = cards.find(card => (card.getAttribute('href') || card.href) === selectedUrl);
+    const videoId = selectedId || activeCard?.dataset.videoId || '';
+    const channelId = activeCard?.dataset.channelId || '';
+    const explicitEmbedUrl = activeCard?.dataset.embedUrl || '';
+    let embedUrl = '';
+
+    if (explicitEmbedUrl) {
+      embedUrl = explicitEmbedUrl;
+    } else if (videoId) {
+      embedUrl = 'https://www.youtube.com/embed/' + encodeURIComponent(videoId) + '?autoplay=1&rel=0';
+    } else {
+      // プレイリストURLは動画IDではなく list パラメータで埋め込む
+      try {
+        const parsed = new URL(selectedUrl);
+        const listId = parsed.searchParams.get('list');
+        if (listId) {
+          embedUrl = 'https://www.youtube.com/embed/videoseries?list=' + encodeURIComponent(listId) + '&autoplay=1&rel=0';
+        } else if (channelId) {
+          // ライブ配信カードはGASからチャンネルIDが渡された場合に埋め込み再生
+          embedUrl = 'https://www.youtube.com/embed/live_stream?channel=' + encodeURIComponent(channelId) + '&autoplay=1';
+        }
+      } catch (_) {}
+    }
+
+    if (!embedUrl) {
+      // 再生できないURLでも、意図せずYouTubeへ遷移させない
+      confirmPanel.querySelector('p').textContent =
+        'この動画のHP内再生情報を取得できませんでした。GAS側から動画IDまたは埋め込みURLを渡す必要があります。';
       return;
     }
+
+    confirmPanel.querySelector('p').textContent = 'この動画を再生しますか？';
     confirmPanel.hidden = true;
     playerPanel.hidden = false;
     const iframe = document.createElement('iframe');
-    // 通常のYouTube埋め込みを使用し、Refererを送ってエラー153を回避する
-    iframe.src = 'https://www.youtube.com/embed/' + encodeURIComponent(selectedId) + '?autoplay=1&rel=0';
+    iframe.src = embedUrl;
     iframe.title = 'YouTube video player';
     iframe.referrerPolicy = 'strict-origin-when-cross-origin';
     iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
