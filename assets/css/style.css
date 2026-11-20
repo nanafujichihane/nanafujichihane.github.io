@@ -592,9 +592,9 @@
   }
 }
 
-/* HOME：下部メニューまでのスクロール距離を短縮 */
+/* HOME：下部メニューまでのスクロール距離を少し短縮（PC） */
 .hero-scroll-scene {
-  height: 135vh;
+  height: 120vh;
 }
 
 @media (max-width: 760px) {
