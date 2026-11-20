@@ -376,34 +376,51 @@ body.is-loaded .hero-scroll-stage .hero-art img {
 @media (max-width: 760px) {
   /* スマホではスクロール演出を使わず、メイン画像と動画を縦に並べる */
   .hero-scroll-scene {
+    display: block !important;
+    position: relative !important;
     height: auto !important;
     min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   .hero-scroll-stage {
     position: relative !important;
     top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
     height: auto !important;
     min-height: 0 !important;
     max-height: none !important;
-    margin-top: 16px;
-    display: flex;
-    flex-direction: column;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    gap: 0 !important;
     overflow: visible !important;
+    transform: none !important;
   }
   .hero-scroll-stage .hero-art {
     position: relative !important;
     inset: auto !important;
+    align-self: stretch !important;
     width: 100% !important;
     height: auto !important;
     min-height: 0 !important;
-    flex: none;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex: none !important;
+    aspect-ratio: 5 / 3;
   }
   .hero-scroll-stage .hero-art img {
     display: block;
     width: 100%;
-    height: auto;
-    max-height: none;
-    object-fit: contain;
+    height: 100% !important;
+    max-height: none !important;
+    object-fit: cover;
   }
   .hero-profile-link {
     opacity: 1 !important;
