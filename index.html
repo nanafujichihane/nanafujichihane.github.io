@@ -397,9 +397,8 @@ body.is-loaded .hero-scroll-stage .hero-art img {
 
       <div class="hero-art">
         <img src="assets/images/HP_main_image.png" alt="メインビジュアル">
-      </div>
 
-      <div class="hero-social-links" aria-label="SNS links">
+        <div class="hero-social-links" aria-label="SNS links">
         <a class="hero-social-link hero-social-youtube"
            href="https://www.youtube.com/@nnfjchn"
            target="_blank" rel="noopener noreferrer"
@@ -414,12 +413,13 @@ body.is-loaded .hero-scroll-stage .hero-art img {
           <span>X / TWITTER</span>
           <b>↗</b>
         </a>
-      </div>
+        </div>
 
-      <a class="hero-profile-link" href="profile.html" aria-label="PROFILE">
-        <span class="hero-profile-default">OFFICIAL WEBSITE</span>
-        <span class="hero-profile-hover">PROFILE ↗</span>
-      </a>
+        <a class="hero-profile-link" href="profile.html" aria-label="PROFILE">
+          <span class="hero-profile-default">OFFICIAL WEBSITE</span>
+          <span class="hero-profile-hover">PROFILE ↗</span>
+        </a>
+      </div>
 
       <!-- HERO VIDEO LINKS -->
       <div class="hero-video-zone" aria-label="Latest videos">
@@ -677,9 +677,9 @@ body.is-loaded .hero-scroll-stage .hero-art img {
 (() => {
   const scene = document.querySelector('.hero-scroll-scene');
   const stage = document.querySelector('.hero-scroll-stage');
+
   if (!scene || !stage) return;
 
-  // Mobile: show links immediately and do not run the scroll-reveal effect.
   if (window.matchMedia('(max-width: 760px)').matches) {
     stage.classList.add('is-revealed');
     return;
@@ -687,13 +687,15 @@ body.is-loaded .hero-scroll-stage .hero-art img {
 
   const update = () => {
     const rect = scene.getBoundingClientRect();
-    const distance = scene.offsetHeight - stage.offsetHeight;
-    const progress = distance > 0 ? -rect.top / distance : 0;
+    const progress =
+      -rect.top / (scene.offsetHeight - stage.offsetHeight);
+
     stage.classList.toggle('is-revealed', progress >= 0.18);
   };
 
   window.addEventListener('scroll', update, { passive: true });
   window.addEventListener('resize', update);
+
   update();
 })();
 </script>
