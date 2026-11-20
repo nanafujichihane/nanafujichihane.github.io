@@ -1267,10 +1267,7 @@ body.is-loaded .hero-scroll-stage .hero-art img {
 
 
 /* =====================================================
-   HOME mobile: final layout override
-   - Keep the main artwork at its natural aspect ratio.
-   - Place social / official links over the artwork.
-   - Keep the video carousel in normal flow below it.
+   HOME mobile: square-ish hero frame + overlay links
    ===================================================== */
 @media (max-width: 760px) {
   .hero-scroll-scene {
@@ -1294,6 +1291,7 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     overflow: visible !important;
   }
 
+  /* Near-square visual area, matching the supplied mobile mockup. */
   .hero-scroll-stage .hero-art {
     position: relative !important;
     display: block !important;
@@ -1302,37 +1300,40 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     height: auto !important;
     min-height: 0 !important;
     max-height: none !important;
-    aspect-ratio: auto !important;
+    aspect-ratio: 1.08 / 1 !important;
     margin: 0 !important;
     padding: 0 !important;
     overflow: hidden !important;
   }
 
   .hero-scroll-stage .hero-art > img {
-    position: relative !important;
+    position: absolute !important;
+    inset: 0 !important;
     display: block !important;
     width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
     min-height: 0 !important;
     max-height: none !important;
     aspect-ratio: auto !important;
-    object-fit: contain !important;
-    object-position: center top !important;
+    object-fit: cover !important;
+    object-position: center center !important;
     filter: none !important;
     transform: none !important;
   }
 
+  /* All link coordinates are measured against the same hero image frame. */
   .hero-scroll-stage .hero-art .hero-social-links {
     position: absolute !important;
     z-index: 4 !important;
     left: 5% !important;
-    top: 50% !important;
-    width: clamp(62px, 18vw, 88px) !important;
+    top: 51% !important;
+    width: clamp(72px, 29%, 150px) !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 9px !important;
+    align-items: flex-start !important;
+    gap: clamp(10px, 3vw, 18px) !important;
     margin: 0 !important;
-    transform: translateY(-50%) !important;
+    transform: none !important;
   }
 
   .hero-scroll-stage .hero-art .hero-social-link,
@@ -1341,36 +1342,41 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     display: flex !important;
     width: 100% !important;
     min-height: 0 !important;
-    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
+    justify-content: center !important;
+    align-items: center !important;
     margin: 0 !important;
-    padding: 7px !important;
+    padding: 9px 7px !important;
     opacity: 1 !important;
     pointer-events: auto !important;
     transform: none !important;
-    font-size: clamp(7px, 2vw, 10px) !important;
+    font-size: clamp(8px, 2.5vw, 12px) !important;
+    white-space: nowrap !important;
   }
 
   .hero-scroll-stage .hero-art .hero-social-x {
-    margin-left: 28% !important;
+    width: 72% !important;
+    margin-left: 0 !important;
   }
 
   .hero-scroll-stage .hero-art .hero-profile-link,
   .hero-scroll-stage.is-revealed .hero-art .hero-profile-link {
     position: absolute !important;
     z-index: 4 !important;
-    top: 50% !important;
-    right: 5% !important;
+    top: 78% !important;
+    right: 4% !important;
     bottom: auto !important;
-    width: min(43%, 190px) !important;
-    min-height: 34px !important;
+    width: min(42%, 190px) !important;
+    min-height: 0 !important;
     height: auto !important;
     margin: 0 !important;
-    padding: 8px 7px !important;
+    padding: 10px 8px !important;
     opacity: 1 !important;
     pointer-events: auto !important;
-    transform: translateY(-50%) !important;
-    font-size: clamp(9px, 2.5vw, 12px) !important;
-    white-space: normal !important;
+    transform: none !important;
+    font-size: clamp(9px, 2.7vw, 13px) !important;
+    white-space: nowrap !important;
   }
 
   .hero-scroll-stage .hero-video-zone,
@@ -1440,5 +1446,23 @@ body.is-loaded .hero-scroll-stage .hero-art img {
 
   .home-links {
     margin-top: 0 !important;
+  }
+}
+
+
+/* HOME bottom navigation: reduce tile height on desktop and mobile */
+.home-links > a {
+  min-height: 128px !important;
+  padding-top: 18px !important;
+  padding-bottom: 18px !important;
+  gap: 8px !important;
+}
+
+@media (max-width: 760px) {
+  .home-links > a {
+    min-height: 104px !important;
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+    gap: 7px !important;
   }
 }
