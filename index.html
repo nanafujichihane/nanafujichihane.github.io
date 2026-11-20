@@ -374,11 +374,53 @@ body.is-loaded .hero-scroll-stage .hero-art img {
 .hero-video-mobile-nav { display: none; }
 
 @media (max-width: 760px) {
-  .hero-video-zone {
-    right: 8%;
-    bottom: 4.5%;
-    width: 84%;
+  /* スマホではスクロール演出を使わず、メイン画像と動画を縦に並べる */
+  .hero-scroll-scene {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+  .hero-scroll-stage {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: visible !important;
+  }
+  .hero-scroll-stage .hero-art {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    flex: none;
+  }
+  .hero-scroll-stage .hero-art img {
     display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+  }
+  .hero-profile-link {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+  }
+  .hero-video-zone {
+    position: relative !important;
+    inset: auto !important;
+    width: 84% !important;
+    max-width: 460px;
+    margin: 22px auto 28px;
+    display: block;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    transition: none !important;
   }
   .hero-video-card { width: 100%; gap: 8px; }
   .hero-video-card:not(.is-mobile-active) { display: none; }
@@ -422,7 +464,7 @@ body.is-loaded .hero-scroll-stage .hero-art img {
   }
 }
 @media (max-width: 420px) {
-  .hero-video-zone { right: 8%; bottom: 4%; width: 84%; }
+  .hero-video-zone { inset: auto !important; width: 84% !important; margin: 18px auto 24px; }
   .hero-video-mobile-nav button { width: 30px; height: 38px; font-size: 20px; }
 }
 </style>
@@ -700,6 +742,11 @@ body.is-loaded .hero-scroll-stage .hero-art img {
   const stage = document.querySelector('.hero-scroll-stage');
 
   if (!scene || !stage) return;
+
+  if (window.matchMedia('(max-width: 760px)').matches) {
+    stage.classList.add('is-revealed');
+    return;
+  }
 
   const update = () => {
     const rect = scene.getBoundingClientRect();
