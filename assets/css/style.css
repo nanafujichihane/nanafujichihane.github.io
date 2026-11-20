@@ -1090,3 +1090,158 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     margin-top: 0;
   }
 }
+
+
+/* HOME：スマートフォン専用レイアウト（画像の自然な比率を維持） */
+.hero-video-mobile-nav { display: none; }
+
+@media (max-width: 760px) {
+  .hero-scroll-scene {
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+  }
+
+  .hero-scroll-stage {
+    position: relative !important;
+    top: auto !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: var(--paper2);
+  }
+
+  /* 画像の高さを固定せず、元画像の縦横比のまま表示 */
+  .hero-scroll-stage .hero-art {
+    position: relative !important;
+    inset: auto !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .hero-scroll-stage .hero-art img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+
+  /* SNS・PROFILEはメイン画像の上に重ねる */
+  .hero-scroll-stage .hero-social-links {
+    position: absolute !important;
+    z-index: 4 !important;
+    left: 5% !important;
+    top: 50% !important;
+    width: clamp(58px, 16vw, 88px) !important;
+    transform: translateY(-50%) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .hero-scroll-stage .hero-social-link {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    padding: 7px !important;
+    font-size: .48rem !important;
+  }
+
+  .hero-scroll-stage .hero-profile-link {
+    position: absolute !important;
+    z-index: 4 !important;
+    top: 50% !important;
+    right: 4% !important;
+    width: min(42vw, 180px) !important;
+    min-height: 36px !important;
+    height: auto !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translateY(-50%) !important;
+    padding: 8px 9px !important;
+    font-size: .64rem !important;
+  }
+
+  /* 動画は画像の下に独立した1枚表示 */
+  .hero-scroll-stage .hero-video-zone {
+    position: relative !important;
+    inset: auto !important;
+    z-index: 5 !important;
+    display: block !important;
+    width: 88% !important;
+    max-width: 460px !important;
+    margin: 22px auto 30px !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero-video-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    gap: 8px !important;
+  }
+
+  .hero-video-card:not(.is-mobile-active) {
+    display: none !important;
+  }
+
+  .hero-video-thumb {
+    width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+  }
+
+  .hero-video-caption {
+    color: #351c35 !important;
+    font-size: clamp(.72rem, 2.8vw, .88rem) !important;
+    font-weight: 600 !important;
+    letter-spacing: .1em !important;
+    line-height: 1.5 !important;
+    text-shadow: none !important;
+  }
+
+  .hero-video-mobile-nav {
+    position: absolute;
+    z-index: 8;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+
+  .hero-video-mobile-nav button {
+    width: 34px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 1px solid rgba(53,28,53,.32);
+    border-radius: 0;
+    background: rgba(238,231,229,.94);
+    color: #351c35;
+    font: 22px/1 Georgia, serif;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0 2px 8px rgba(35,20,35,.08);
+  }
+
+  .home-links {
+    margin-top: 0 !important;
+  }
+}
