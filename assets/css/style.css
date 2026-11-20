@@ -988,3 +988,10 @@ body.is-loaded .hero-scroll-stage .hero-art img {
 .home-links > a:focus-visible b {
   color: var(--white, #fffaf8);
 }
+/* スマートフォン：ヘッダーを画面幅いっぱいにする */
+@media (max-width: 760px) {
+  .site-header {
+    width: 100%;
+    margin: 0;
+  }
+}
