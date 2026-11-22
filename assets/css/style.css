@@ -1191,20 +1191,18 @@ footer {
   }
 }
 /* HOME PC：ヘッダー下の表示領域に画像を収め、中央でトリミング */
-/* HOME mobile navigation: always display six links in a fixed 2-column, 3-row grid */
+/* HOME mobile navigation: fixed 2 columns × 3 rows */
 @media (max-width: 760px) {
   .home-links {
     display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    grid-auto-rows: minmax(128px, auto);
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: repeat(3, minmax(104px, auto));
+    grid-auto-rows: auto;
   }
   .home-links > a {
     min-width: 0;
-    min-height: 128px !important;
-    padding: 18px 14px !important;
-  }
-  .home-links > a:nth-child(3n) {
-    border-right: 1px solid #e2d8df;
+    min-height: 104px !important;
+    padding: 14px !important;
   }
   .home-links > a:nth-child(2n) {
     border-right: 0;
@@ -1260,16 +1258,16 @@ footer {
   min-height: 0;
   max-width: none;
   max-height: none;
-  object-fit: cover;
-  object-position: 50% 50%;
+  object-fit: contain;
+  object-position: center center;
   filter: blur(12px);
-  transform: scale(1.035);
+  transform: none;
   transition: filter 1.7s ease, transform 1.7s ease;
 }
 
 body.is-loaded .hero-scroll-stage .hero-art img {
   filter: blur(0);
-  transform: scale(1);
+  transform: none;
 }
 
 /* Social buttons */
@@ -1464,7 +1462,7 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center center;
     transform: none;
   }
@@ -1512,19 +1510,20 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     height: auto;
     min-height: 0;
     max-height: none;
-    aspect-ratio: 1.08 / 1;
+    aspect-ratio: auto;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .hero-scroll-stage .hero-art > img,
   .hero-scroll-stage .hero-art img {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    inset: auto;
+    display: block;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     object-position: center center;
     filter: none;
     transform: none;
