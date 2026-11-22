@@ -594,7 +594,7 @@
 
 /* HOME：下部メニューまでのスクロール距離を少し短縮（PC） */
 .hero-scroll-scene {
-  height: 120vh;
+  height: 108vh;
 }
 
 @media (max-width: 760px) {
@@ -1486,6 +1486,42 @@ body.is-loaded .hero-scroll-stage .hero-art img {
 
   .hero-scroll-stage .hero-art .hero-social-x {
     width: clamp(62px, 18vw, 88px) !important;
+    margin-left: 28% !important;
+  }
+}
+
+
+/* HOME mobile: hard-lock YouTube / X buttons to equal width and height */
+@media (max-width: 760px) {
+  .hero-scroll-stage .hero-art .hero-social-links {
+    align-items: flex-start !important;
+  }
+
+  .hero-scroll-stage .hero-art .hero-social-link,
+  .hero-scroll-stage.is-revealed .hero-art .hero-social-link {
+    display: flex !important;
+    box-sizing: border-box !important;
+    width: clamp(62px, 18vw, 88px) !important;
+    min-width: clamp(62px, 18vw, 88px) !important;
+    max-width: clamp(62px, 18vw, 88px) !important;
+    height: clamp(62px, 18vw, 88px) !important;
+    min-height: clamp(62px, 18vw, 88px) !important;
+    max-height: clamp(62px, 18vw, 88px) !important;
+    flex: 0 0 clamp(62px, 18vw, 88px) !important;
+    aspect-ratio: 1 / 1 !important;
+    padding: 6px !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .hero-scroll-stage .hero-art .hero-social-x {
+    width: clamp(62px, 18vw, 88px) !important;
+    min-width: clamp(62px, 18vw, 88px) !important;
+    max-width: clamp(62px, 18vw, 88px) !important;
+    height: clamp(62px, 18vw, 88px) !important;
+    min-height: clamp(62px, 18vw, 88px) !important;
+    max-height: clamp(62px, 18vw, 88px) !important;
+    flex-basis: clamp(62px, 18vw, 88px) !important;
     margin-left: 28% !important;
   }
 }
