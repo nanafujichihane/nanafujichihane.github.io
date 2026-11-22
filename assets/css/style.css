@@ -1549,3 +1549,28 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     font-size: 0.62rem !important;
   }
 }
+
+
+/* HOME PC: fill the available viewport and keep the crop centered vertically */
+@media (min-width: 761px) {
+  .hero-scroll-stage {
+    top: 76px !important;
+    height: calc(100vh - 76px) !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin-top: 0 !important;
+  }
+
+  .hero-scroll-stage .hero-art,
+  .hero-scroll-stage.is-revealed .hero-art {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .hero-scroll-stage .hero-art img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+}
