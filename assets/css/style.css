@@ -1525,3 +1525,16 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     margin-left: 28% !important;
   }
 }
+
+
+/* HOME PC：初期はメインビジュアルを大きく見せ、スクロール後に動画欄を展開 */
+@media (min-width: 761px) {
+  .hero-scroll-stage .hero-art {
+    width: 100%;
+    transition: width .8s cubic-bezier(.22,.7,.25,1);
+  }
+
+  .hero-scroll-stage.is-revealed .hero-art {
+    width: 50%;
+  }
+}
