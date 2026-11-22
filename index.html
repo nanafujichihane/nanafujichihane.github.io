@@ -729,7 +729,7 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     const progress =
       -rect.top / (scene.offsetHeight - stage.offsetHeight);
 
-    stage.classList.toggle('is-revealed', progress >= 0.18);
+    stage.classList.toggle('is-revealed', progress >= 0.05);
   };
 
   window.addEventListener('scroll', update, { passive: true });
