@@ -1054,6 +1054,27 @@ footer {
   .table-tools {
     flex-direction: column;
   }
+  /* SONG LIST：検索窓とチェックボックスのサイズ指定を分離 */
+  .table-tools .dam-filter {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    padding: 3px 0;
+    font-size: .82rem;
+    line-height: 1.4;
+    cursor: pointer;
+  }
+  .table-tools .dam-filter input[type="checkbox"] {
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    min-height: 16px;
+    margin: 0;
+    padding: 0;
+    accent-color: var(--plum);
+  }
   .table-tools select {
     width: 100%;
   }
