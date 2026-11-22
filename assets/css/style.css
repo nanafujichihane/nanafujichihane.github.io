@@ -1541,3 +1541,11 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     line-height: 1 !important;
   }
 }
+
+
+/* HOME mobile: slightly reduce the arrow mark in SNS square links */
+@media (max-width: 760px) {
+  .hero-scroll-stage .hero-art .hero-social-link b {
+    font-size: 0.62rem !important;
+  }
+}
