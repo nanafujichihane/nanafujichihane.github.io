@@ -1527,14 +1527,17 @@ body.is-loaded .hero-scroll-stage .hero-art img {
 }
 
 
-/* HOME PC：初期はメインビジュアルを大きく見せ、スクロール後に動画欄を展開 */
-@media (min-width: 761px) {
-  .hero-scroll-stage .hero-art {
-    width: 100%;
-    transition: width .8s cubic-bezier(.22,.7,.25,1);
+
+/* HOME mobile: SNS link labels have more breathing room inside square buttons */
+@media (max-width: 760px) {
+  .hero-scroll-stage .hero-art .hero-social-link span {
+    font-size: clamp(6px, 1.55vw, 8px) !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0.025em !important;
   }
 
-  .hero-scroll-stage.is-revealed .hero-art {
-    width: 50%;
+  .hero-scroll-stage .hero-art .hero-social-link b {
+    font-size: 0.72rem !important;
+    line-height: 1 !important;
   }
 }
