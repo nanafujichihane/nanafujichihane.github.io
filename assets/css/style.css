@@ -309,14 +309,16 @@
 
 /* スマートフォンでも隙間をなくす */
 
-/* HOME ヘッダーをフッターと同じ色に */
-.site-header {height:76px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;background:var(--paper2)
+/* HOME ヘッダー：常時表示 */
+.site-header {
+  height: 76px;
+  padding: 0 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: sticky;
   top: 0;
-  z-index: 50;
-
-  background: #D5C3D2;
-
+  z-index: 100;
   background: var(--plum);
   color: var(--paper2);
 }
@@ -976,13 +978,16 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     padding-bottom: 36px;
   }
 
-  .site-header {height:64px;margin:6px;background:var(--paper2);padding:0 18px
-    position: sticky;
-    top: 0;
-    margin: 0 6px;
-  
+  .site-header {
+    height: 64px;
     width: 100%;
     margin: 0;
+    padding: 0 18px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--plum);
+    color: var(--paper2);
   }
 
 
@@ -1531,51 +1536,39 @@ body.is-loaded .hero-scroll-stage .hero-art img {
 }
 
 
-/* HOME PC: fill the available viewport and keep the crop centered vertically */
-
-
-
-/* HOME PC: force mathematically centered crop (equal top/bottom crop) */
+/* HOME PC：ヘッダー下の表示領域に画像を収め、中央でトリミング */
 @media (min-width: 761px) {
-  .costume-grid{grid-template-columns:4fr 9fr;align-items:start}
-  .costume-grid .costume-fullbody,
-  .costume-grid .costume-sheet{width:100%;height:auto;min-height:0}
-
   .hero-scroll-stage {
-    top: 76px !important;
-    height: calc(100vh - 76px) !important;
-    min-height: 0 !important;
-    max-height: none !important;
-    margin-top: 0 !important;
+    position: sticky;
+    top: 76px;
+    height: calc(100vh - 76px);
+    min-height: 0;
+    max-height: none;
+    margin: 0;
+    overflow: hidden;
   }
 
   .hero-scroll-stage .hero-art,
   .hero-scroll-stage.is-revealed .hero-art {
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  
-
-  .hero-scroll-stage .hero-art {
-    overflow: hidden !important;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
   }
 
   .hero-scroll-stage .hero-art img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center center !important;
-  
-    position: absolute !important;
-    inset: 50% auto auto 50% !important;
-    display: block !important;
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none !important;
-    max-height: none !important;
-    object-fit: cover !important;
-    object-position: 50% 50% !important;
-    transform: translate(-50%, -50%) !important;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
+    object-position: 50% 50%;
+    transform: translate(-50%, -50%);
   }
 }
