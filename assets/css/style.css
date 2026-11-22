@@ -1572,3 +1572,13 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     transform: translate(-50%, -50%);
   }
 }
+
+
+/* Header：PC・スマホとも常時表示し、背景色を固定 */
+.site-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  background-color: #351c35 !important;
+  color: #f5efed !important;
+}
