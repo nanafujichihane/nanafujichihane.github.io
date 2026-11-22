@@ -1574,3 +1574,24 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     object-position: center center !important;
   }
 }
+
+
+/* HOME PC: force mathematically centered crop (equal top/bottom crop) */
+@media (min-width: 761px) {
+  .hero-scroll-stage .hero-art {
+    overflow: hidden !important;
+  }
+
+  .hero-scroll-stage .hero-art img {
+    position: absolute !important;
+    inset: 50% auto auto 50% !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: 50% 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+}
