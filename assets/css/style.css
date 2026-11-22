@@ -1191,18 +1191,20 @@ footer {
   }
 }
 /* HOME PC：ヘッダー下の表示領域に画像を収め、中央でトリミング */
-/* HOME mobile navigation: fixed 2 columns × 3 rows */
+/* HOME mobile navigation: always display six links in a fixed 2-column, 3-row grid */
 @media (max-width: 760px) {
   .home-links {
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    grid-template-rows: repeat(3, minmax(104px, auto));
-    grid-auto-rows: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-auto-rows: minmax(128px, auto);
   }
   .home-links > a {
     min-width: 0;
-    min-height: 104px !important;
-    padding: 14px !important;
+    min-height: 128px !important;
+    padding: 18px 14px !important;
+  }
+  .home-links > a:nth-child(3n) {
+    border-right: 1px solid #e2d8df;
   }
   .home-links > a:nth-child(2n) {
     border-right: 0;
@@ -1258,16 +1260,16 @@ footer {
   min-height: 0;
   max-width: none;
   max-height: none;
-  object-fit: contain;
-  object-position: center center;
+  object-fit: cover;
+  object-position: 50% 50%;
   filter: blur(12px);
-  transform: none;
+  transform: scale(1.035);
   transition: filter 1.7s ease, transform 1.7s ease;
 }
 
 body.is-loaded .hero-scroll-stage .hero-art img {
   filter: blur(0);
-  transform: none;
+  transform: scale(1);
 }
 
 /* Social buttons */
@@ -1462,7 +1464,7 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center center;
     transform: none;
   }
@@ -1510,20 +1512,19 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     height: auto;
     min-height: 0;
     max-height: none;
-    aspect-ratio: auto;
+    aspect-ratio: 1.08 / 1;
     margin: 0;
     padding: 0;
-    overflow: visible;
+    overflow: hidden;
   }
 
   .hero-scroll-stage .hero-art > img,
   .hero-scroll-stage .hero-art img {
-    position: relative;
-    inset: auto;
-    display: block;
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
     object-position: center center;
     filter: none;
     transform: none;
@@ -1692,5 +1693,97 @@ body.is-loaded .hero-scroll-stage .hero-art img {
   .hero-scroll-stage .hero-copy {
     transition-duration: .01ms !important;
     transition-delay: 0ms !important;
+  }
+}
+
+
+/* =========================================================
+   HOME HERO FINAL LAYOUT
+   PC: full-width frame; centered crop as overlays appear.
+   Mobile: permanently square image frame.
+   ========================================================= */
+@media (min-width: 761px) {
+  .hero-scroll-scene {
+    width: 100%;
+    height: 108vh;
+  }
+
+  .hero-scroll-stage {
+    width: 100%;
+    height: calc(100vh - 76px);
+    overflow: hidden;
+  }
+
+  .hero-scroll-stage .hero-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .hero-scroll-stage .hero-art > img,
+  .hero-scroll-stage .hero-art img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: 50% 50%;
+    transform: scale(1.035);
+  }
+
+  body.is-loaded .hero-scroll-stage .hero-art > img,
+  body.is-loaded .hero-scroll-stage .hero-art img {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-scroll-scene {
+    height: auto;
+    min-height: 0;
+  }
+
+  .hero-scroll-stage {
+    position: relative;
+    top: auto;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .hero-scroll-stage .hero-art {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+
+  .hero-scroll-stage .hero-art > img,
+  .hero-scroll-stage .hero-art img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    max-width: none;
+    object-fit: cover;
+    object-position: 50% 50%;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+
+  /* Six HOME links must remain exactly two columns by three rows. */
+  .home-links {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-flow: row !important;
   }
 }
