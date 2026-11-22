@@ -1466,3 +1466,26 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     gap: 7px !important;
   }
 }
+
+
+/* HOME mobile: keep YouTube / X buttons square like desktop */
+@media (max-width: 760px) {
+  .hero-scroll-stage .hero-art .hero-social-link,
+  .hero-scroll-stage.is-revealed .hero-art .hero-social-link {
+    width: clamp(62px, 18vw, 88px) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 1 / 1 !important;
+    padding: 7px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: normal !important;
+  }
+
+  .hero-scroll-stage .hero-art .hero-social-x {
+    width: clamp(62px, 18vw, 88px) !important;
+    margin-left: 28% !important;
+  }
+}
