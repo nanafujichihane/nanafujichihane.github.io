@@ -113,6 +113,17 @@ body.is-loaded .hero-scroll-stage .hero-art img {
   filter: blur(0);
   transform: scale(1);
 }
+/* PC：中央配置の translate を読み込み演出の transform で消さない */
+@media (min-width: 761px) {
+  .hero-scroll-stage .hero-art img {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1.035);
+  }
+  body.is-loaded .hero-scroll-stage .hero-art img {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
 .hero-profile-link {
   position: absolute;
   z-index: 4;
