@@ -563,7 +563,7 @@ footer {
   margin-bottom: 16px;
 }
 /* HOME メインビジュアルの表示サイズ調整 */
-/* PROFILEの画像を左上に揃える */
+/* PROFILE */
 .profile-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -571,25 +571,77 @@ footer {
   align-items: start;
 }
 .profile-art {
+  position: relative;
   min-height: 0;
   overflow: hidden;
-  min-height: 0;
   align-self: start;
   height: auto;
+  isolation: isolate;
 }
 .profile-art img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
   height: auto;
   object-fit: contain;
+  animation: profile-image-rise 1.15s cubic-bezier(.2,.7,.25,1) both,
+             profile-image-float 6s ease-in-out 1.15s infinite;
+}
+/* 画像の足元から控えめな光の粒が浮かぶ演出 */
+.profile-art::before,
+.profile-art::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 8% 0 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: profile-particles 5.8s ease-out 0.4s infinite;
+}
+.profile-art::before {
+  background-image:
+    radial-gradient(circle, rgba(157, 105, 139, .48) 0 2px, transparent 3px),
+    radial-gradient(circle, rgba(196, 151, 171, .55) 0 3px, transparent 4px),
+    radial-gradient(circle, rgba(157, 105, 139, .38) 0 2px, transparent 3px);
+  background-size: 9px 9px, 11px 11px, 7px 7px;
+  background-position: 18% 92%, 72% 98%, 88% 90%;
+}
+.profile-art::after {
+  background-image:
+    radial-gradient(circle, rgba(196, 151, 171, .45) 0 2px, transparent 3px),
+    radial-gradient(circle, rgba(157, 105, 139, .32) 0 2px, transparent 3px);
+  background-size: 8px 8px, 10px 10px;
+  background-position: 38% 100%, 62% 94%;
+  animation-delay: 2.9s;
+}
+@keyframes profile-image-rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes profile-image-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -5px; }
+}
+@keyframes profile-particles {
+  0% { opacity: 0; transform: translateY(12px); }
+  18% { opacity: .85; }
+  85% { opacity: .45; }
+  100% { opacity: 0; transform: translateY(-42px); }
 }
 .profile-info h3 {
   margin-top: 24px;
+}
+.profile-info dl + h3 {
+  margin-top: 48px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .profile-art img,
+  .profile-art::before,
+  .profile-art::after {
+    animation: none;
+  }
 }
 /* Costume images */
 .costume-grid .art-placeholder img {
@@ -1053,27 +1105,6 @@ footer {
   }
   .table-tools {
     flex-direction: column;
-  }
-  /* SONG LIST：検索窓とチェックボックスのサイズ指定を分離 */
-  .table-tools .dam-filter {
-    align-self: flex-start;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    width: fit-content;
-    padding: 3px 0;
-    font-size: .82rem;
-    line-height: 1.4;
-    cursor: pointer;
-  }
-  .table-tools .dam-filter input[type="checkbox"] {
-    flex: 0 0 16px;
-    width: 16px;
-    height: 16px;
-    min-height: 16px;
-    margin: 0;
-    padding: 0;
-    accent-color: var(--plum);
   }
   .table-tools select {
     width: 100%;
