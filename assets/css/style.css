@@ -707,22 +707,59 @@ footer {
 .costume-switcher img {
   cursor: zoom-in;
 }
-/* 三面図の表示枠を画像の比率に合わせる */
-.costume-grid .costume-sheet {
-  aspect-ratio: 3/2;
-  min-height: 0;
-  aspect-ratio: auto;
-  height: auto;
-  min-height: 0;
-  padding: 0;
-  background: transparent;
+/* COSTUME：立ち絵の高さと三面図の短辺（高さ）を揃える */
+@media (min-width: 769px) {
+  .costume-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2.25fr);
+    align-items: stretch;
+  }
+  .costume-grid .costume-fullbody,
+  .costume-grid .costume-sheet {
+    height: min(72vw, 620px);
+    min-height: 0;
+    aspect-ratio: auto;
+    padding: 0;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .costume-grid .costume-fullbody img,
+  .costume-grid .costume-sheet img {
+    display: block;
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
 }
-.costume-grid .costume-sheet img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
+@media (max-width: 768px) {
+  .costume-grid .costume-fullbody,
+  .costume-grid .costume-sheet {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: auto;
+    padding: 0;
+    background: transparent;
+  }
+  .costume-grid .costume-fullbody img,
+  .costume-grid .costume-sheet img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
 }
+/* 拡大表示の閉じるボタンを常に前面に */
+.lightbox-close {
+  z-index: 110;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* HOME scroll reveal */
 /* HOME：透かしのようなPROFILEパネル */
 /* HOME メインビジュアルの高さを少し抑える */
