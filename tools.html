@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TOOLS | NAME</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* TOOLS page: shared site palette and restrained, square-edged components */
+    .tools-page .page-title { margin-bottom: 2.5rem; }
+    .tools-wrap {
+      width: min(88%, 900px);
+      margin: 0 auto 5rem;
+      display: grid;
+      gap: 1.5rem;
+    }
+    .tool-section {
+      border: 1px solid var(--lavender, #cdbdc9);
+      background: var(--paper2, #f5efed);
+      padding: clamp(18px, 3vw, 30px);
+    }
+    .tool-section h2 {
+      margin: 0 0 .45rem;
+      color: var(--plum, #351c35);
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+    }
+    .tool-description {
+      margin: 0 0 1.4rem;
+      color: var(--ink, #30232f);
+      font-size: .88rem;
+      line-height: 1.8;
+    }
+    .copy-list { display: grid; gap: 10px; }
+    .copy-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 16px;
+      border: 1px solid var(--lavender, #cdbdc9);
+      background: var(--white, #fffaf8);
+    }
+    .copy-name {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--plum, #351c35);
+      font-size: .78rem;
+      letter-spacing: .08em;
+    }
+    .copy-text {
+      overflow-wrap: anywhere;
+      color: var(--ink, #30232f);
+      font-size: 1.05rem;
+      letter-spacing: .04em;
+    }
+    .tool-button {
+      appearance: none;
+      border: 1px solid var(--plum, #351c35);
+      border-radius: 0;
+      padding: 10px 18px;
+      background: var(--plum, #351c35);
+      color: var(--white, #fffaf8);
+      font: inherit;
+      font-size: .82rem;
+      letter-spacing: .06em;
+      cursor: pointer;
+      transition: background-color .2s ease, color .2s ease;
+      white-space: nowrap;
+    }
+    .tool-button:hover, .tool-button:focus-visible {
+      background: var(--mauve, #a98eaa);
+      color: var(--ink, #30232f);
+    }
+    .tool-button:focus-visible, .tweet-input:focus-visible {
+      outline: 2px solid var(--mauve, #a98eaa);
+      outline-offset: 3px;
+    }
+    .tweet-input {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 150px;
+      resize: vertical;
+      border: 1px solid var(--lavender, #cdbdc9);
+      border-radius: 0;
+      padding: 14px;
+      background: var(--white, #fffaf8);
+      color: var(--ink, #30232f);
+      font: inherit;
+      line-height: 1.8;
+    }
+    .tweet-tag {
+      margin: 12px 0 18px;
+      color: var(--plum, #351c35);
+      font-size: .88rem;
+      letter-spacing: .04em;
+    }
+    .tweet-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .tool-status {
+      min-height: 1.5em;
+      margin: 10px 0 0;
+      color: var(--plum, #351c35);
+      font-size: .8rem;
+    }
+    @media (max-width: 600px) {
+      .tools-wrap { width: 94%; gap: 1rem; }
+      .tool-section { padding: 17px 14px; }
+      .copy-item { padding: 12px; gap: 10px; }
+      .copy-text { font-size: .95rem; }
+      .tool-button { padding: 10px 13px; }
+    }
+    @media (max-width: 380px) {
+      .copy-item { grid-template-columns: 1fr; }
+      .copy-item .tool-button { justify-self: start; }
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <a class="wordmark" href="index.html"><img src="assets/images/logo.png" alt="HOME" style="display:block; width:auto; height:auto; max-width:180px; max-height:42px; object-fit:contain;"></a>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">MENU</button>
+  <nav id="site-nav" class="site-nav">
+    <a href="index.html">HOME</a><a href="notes.html">NOTES</a><a href="profile.html">PROFILE</a><a href="costume.html">COSTUME</a><a href="music.html">MUSIC</a><a href="songs.html">SONG LIST</a><a href="links.html">LINKS</a>
+  </nav>
+</header>
+
+<main class="subpage tools-page">
+  <header class="page-title">
+    <p class="eyebrow">STREAMING SUPPORT</p>
+    <h1>Tools</h1>
+    <p class="jp-label">配信おたすけツール</p>
+  </header>
+
+  <div class="tools-wrap">
+    <section class="tool-section" aria-labelledby="copy-heading">
+      <h2 id="copy-heading">COMMENT COPY</h2>
+      <p class="tool-description">配信コメントに使える定型文をコピーできます。</p>
+      <div class="copy-list">
+        <div class="copy-item">
+          <div><span class="copy-name">弾幕</span><span class="copy-text">🎼💜🎵🥀✨💜🎵🥀</span></div>
+          <button class="tool-button copy-button" type="button" data-copy="🎼💜🎵🥀✨💜🎵🥀">コピー</button>
+        </div>
+        <div class="copy-item">
+          <div><span class="copy-name">拍手</span><span class="copy-text">👏👏👏👏👏</span></div>
+          <button class="tool-button copy-button" type="button" data-copy="👏👏👏👏👏">コピー</button>
+        </div>
+      </div>
+      <p class="tool-status" id="copy-status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="tool-section" aria-labelledby="tweet-heading">
+      <h2 id="tweet-heading">POST TO X</h2>
+      <p class="tool-description">投稿文を入力すると、ハッシュタグを付けた状態でXの投稿画面を開きます。</p>
+      <label for="tweet-text" class="copy-name">投稿文</label>
+      <textarea id="tweet-text" class="tweet-input" placeholder="ここに投稿文を入力してください"></textarea>
+      <p class="tweet-tag">自動付与タグ：#七藤ちはね</p>
+      <div class="tweet-actions">
+        <button class="tool-button" id="tweet-button" type="button">Xで投稿する ↗</button>
+      </div>
+      <p class="tool-status" id="tweet-status" role="status" aria-live="polite"></p>
+    </section>
+  </div>
+</main>
+
+<footer><span>© NAME</span><span>OFFICIAL WEBSITE</span></footer>
+<script src="assets/js/main.js"></script>
+<script>
+  const copyStatus = document.getElementById('copy-status');
+  document.querySelectorAll('.copy-button').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const value = button.dataset.copy;
+      try {
+        await navigator.clipboard.writeText(value);
+        copyStatus.textContent = 'コピーしました。';
+      } catch (error) {
+        const temporary = document.createElement('textarea');
+        temporary.value = value;
+        temporary.style.position = 'fixed';
+        temporary.style.opacity = '0';
+        document.body.appendChild(temporary);
+        temporary.select();
+        const copied = document.execCommand('copy');
+        temporary.remove();
+        copyStatus.textContent = copied ? 'コピーしました。' : 'コピーできませんでした。';
+      }
+    });
+  });
+
+  document.getElementById('tweet-button').addEventListener('click', () => {
+    const input = document.getElementById('tweet-text').value.trim();
+    const tag = '#七藤ちはね';
+    const postText = input ? `${input}\n${tag}` : tag;
+    const intentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(postText)}`;
+    window.open(intentUrl, '_blank', 'noopener,noreferrer');
+    document.getElementById('tweet-status').textContent = 'Xの投稿画面を開きます。内容を確認して投稿してください。';
+  });
+</script>
+</body>
+</html>
