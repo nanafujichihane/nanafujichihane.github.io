@@ -1839,3 +1839,70 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     grid-auto-flow: row !important;
   }
 }
+
+
+/* COSTUME: align the portrait's long edge with the sheet's short edge */
+.costume-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 20px;
+}
+.costume-grid .costume-fullbody,
+.costume-grid .costume-sheet {
+  height: min(70vw, 680px);
+  min-height: 0;
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.costume-grid .costume-fullbody img,
+.costume-grid .costume-sheet img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+.lightbox {
+  z-index: 2000;
+}
+.lightbox-close {
+  position: fixed;
+  z-index: 2010;
+  top: 18px;
+  right: 24px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  line-height: 1;
+  background: rgba(36, 28, 39, .82);
+  border: 1px solid rgba(255,255,255,.6);
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.lightbox-content {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 760px) {
+  .costume-grid {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .costume-grid .costume-fullbody,
+  .costume-grid .costume-sheet {
+    width: 100%;
+    height: min(88vw, 620px);
+  }
+  .lightbox-close {
+    top: 12px;
+    right: 12px;
+  }
+}
