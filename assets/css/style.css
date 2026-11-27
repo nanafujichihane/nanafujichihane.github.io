@@ -521,7 +521,6 @@ footer {
 }
 .lightbox-close {
   position: absolute;
-  z-index: 2;
   top: 18px;
   right: 24px;
   border: 0;
@@ -1838,5 +1837,89 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     grid-auto-flow: row !important;
+  }
+}
+
+/* COSTUME：左右の画像を同じ高さで表示（PC） */
+.costume-page .costume-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 9fr);
+  align-items: stretch;
+  gap: 20px;
+}
+
+.costume-page .costume-grid .costume-fullbody,
+.costume-page .costume-grid .costume-sheet {
+  min-width: 0;
+  min-height: 0;
+  height: auto;
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+/* 立ち絵：幅と高さの比率を統一 */
+.costume-page .costume-grid .costume-fullbody {
+  aspect-ratio: 2 / 3;
+}
+
+/* 三面図：立ち絵と同じ行高になる比率 */
+.costume-page .costume-grid .costume-sheet {
+  aspect-ratio: 3 / 2;
+}
+
+.costume-page .costume-grid .costume-fullbody img,
+.costume-page .costume-grid .costume-sheet img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* 拡大表示の閉じるボタンを常に前面へ */
+#costume-lightbox {
+  z-index: 2000;
+}
+#costume-lightbox .lightbox-close {
+  position: absolute;
+  z-index: 20;
+  top: 18px;
+  right: 24px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  line-height: 1;
+  background: rgba(36, 28, 39, .82);
+  border: 1px solid rgba(255, 255, 255, .65);
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .costume-page .costume-grid {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+  .costume-page .costume-grid .costume-fullbody {
+    width: min(100%, 420px);
+    aspect-ratio: 2 / 3;
+    justify-self: center;
+  }
+  .costume-page .costume-grid .costume-sheet {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+  }
+  .costume-page .costume-grid .costume-fullbody img,
+  .costume-page .costume-grid .costume-sheet img {
+    width: 100%;
+    height: 100%;
+  }
+  #costume-lightbox .lightbox-close {
+    top: 12px;
+    right: 12px;
   }
 }
