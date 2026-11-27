@@ -76,7 +76,12 @@ if (lightbox) {
 
   observer.observe(content, { childList: true, subtree: true });
 
-  lightbox.querySelector('.lightbox-close').addEventListener('click', close);
+  const closeButton = lightbox.querySelector('.lightbox-close');
+  if (closeButton) closeButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    close();
+  });
 
   lightbox.addEventListener('click', event => {
     if (event.target === lightbox) close();
