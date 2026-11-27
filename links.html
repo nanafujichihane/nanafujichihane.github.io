@@ -1,28 +1,38 @@
-<!doctype html><html lang="ja">
-  <head><link rel="icon" type="image/png" href="assets/images/favicon.png"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LINKS | NAME</title><link rel="stylesheet" href="assets/css/style.css">
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LINKS | NAME</title>
+<link rel="stylesheet" href="assets/css/style.css">
 <style>
-/* LINKS page: page-specific tile layout */
+/* LINKS page: desktop side-by-side tile layout */
 .links-page .page-title {
   margin-bottom: 2.5rem;
 }
+
 .social-grid {
-  width: 88%;
-  max-width: 760px;
+  width: 90%;
+  max-width: 1120px;
   margin: 0 auto 5rem;
 }
+
+/* Mobile/tablet default: keep the existing stacked layout */
 .social-grid-main,
 .social-grid-sub {
   display: grid;
   gap: 12px;
 }
+
 .social-grid-main {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-bottom: 12px;
 }
+
 .social-grid-sub {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
+
 .social-tile {
   box-sizing: border-box;
   display: flex;
@@ -34,13 +44,16 @@
   text-decoration: none;
   transition: background-color .2s ease, color .2s ease, border-color .2s ease;
 }
+
 .social-tile span,
 .social-tile small {
   overflow-wrap: anywhere;
 }
+
 .social-tile-main .tile-name {
   display: block;
 }
+
 .social-tile-main .tile-description {
   display: block;
   max-height: 0;
@@ -52,12 +65,14 @@
   letter-spacing: .04em;
   transition: max-height .25s ease, margin-top .25s ease, opacity .2s ease;
 }
+
 .social-tile-main:hover .tile-description,
 .social-tile-main:focus-visible .tile-description {
   max-height: 4em;
   margin-top: 9px;
   opacity: 1;
 }
+
 .social-tile b {
   align-self: flex-end;
   font-size: .85em;
@@ -65,6 +80,7 @@
   line-height: 1;
   opacity: .7;
 }
+
 .social-tile-main {
   aspect-ratio: 1 / .88;
   padding: clamp(14px, 2.2vw, 24px);
@@ -72,6 +88,7 @@
   color: var(--white, #fffaf8);
   font-size: clamp(16px, 2vw, 23px);
 }
+
 .social-tile-sub {
   aspect-ratio: 1.2 / 1;
   padding: clamp(7px, 1.1vw, 13px);
@@ -79,59 +96,122 @@
   color: var(--ink, #30232f);
   font-size: clamp(10px, 1.05vw, 13px);
 }
-/* Small tiles: same pale background as the site header */
+
+/* Existing hover colors */
 .social-tile-sub:hover,
 .social-tile-sub:focus-visible {
   background: var(--plum, #351c35);
   color: var(--white, #fffaf8);
 }
-/* Main tiles: muted mauve instead of the previous dark hover */
+
 .social-tile-main:hover,
 .social-tile-main:focus-visible {
   background: var(--mauve, #a98eaa);
   color: var(--ink, #30232f);
 }
+
 .social-tile:focus-visible {
   outline: 2px solid var(--mauve, #a98eaa);
   outline-offset: 3px;
 }
+
+/* Wide screens: 4 large tiles on the left, 9 small-tile slots on the right.
+   Both groups share the same overall height. */
+@media (min-width: 761px) {
+  .social-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.18fr);
+    align-items: stretch;
+    gap: clamp(14px, 1.8vw, 24px);
+    height: clamp(330px, 34vw, 440px);
+  }
+
+  .social-grid-main,
+  .social-grid-sub {
+    min-width: 0;
+    height: 100%;
+    margin: 0;
+    gap: 12px;
+  }
+
+  .social-grid-main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+
+  .social-grid-sub {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+  }
+
+  .social-tile-main,
+  .social-tile-sub {
+    aspect-ratio: auto;
+    min-height: 0;
+    padding: clamp(10px, 1.35vw, 19px);
+  }
+
+  .social-tile-main {
+    font-size: clamp(15px, 1.45vw, 21px);
+  }
+
+  .social-tile-sub {
+    font-size: clamp(10px, .9vw, 13px);
+  }
+}
+
 @media (max-width: 600px) {
   .social-grid {
     width: 94%;
   }
+
   .social-grid-main,
   .social-grid-sub {
     gap: 8px;
   }
+
   .social-grid-main {
     margin-bottom: 8px;
   }
+
   .social-tile-main {
     padding: 12px;
     font-size: 16px;
   }
+
   .social-tile-sub {
     padding: 8px;
     font-size: 11px;
   }
 }
+
 @media (max-width: 380px) {
   .social-grid-sub {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 </style>
-
-</head><body>
+</head>
+<body>
 <header class="site-header">
-<a class="wordmark" href="index.html"><img src="assets/images/logo.png" alt="HOME" style="display:block; width:auto; height:auto; max-width:180px; max-height:42px; object-fit:contain;"></a>
-<button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">MENU</button>
-<nav id="site-nav" class="site-nav"><a class="" href="index.html">HOME</a><a class="" href="notes.html">NOTES</a><a class="" href="profile.html">PROFILE</a><a class="" href="costume.html">COSTUME</a><a class="" href="music.html">MUSIC</a><a class="" href="songs.html">SONG LIST</a><a class="active" href="links.html">LINKS</a></nav></header>
+  <a class="wordmark" href="index.html"><img src="assets/images/logo.png" alt="HOME" style="display:block; width:auto; height:auto; max-width:180px; max-height:42px; object-fit:contain;"></a>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">MENU</button>
+  <nav id="site-nav" class="site-nav">
+    <a href="index.html">HOME</a>
+    <a href="notes.html">NOTES</a>
+    <a href="profile.html">PROFILE</a>
+    <a href="costume.html">COSTUME</a>
+    <a href="music.html">MUSIC</a>
+    <a href="songs.html">SONG LIST</a>
+    <a class="active" href="links.html">LINKS</a>
+  </nav>
+</header>
+
 <main class="subpage links-page">
   <header class="page-title">
-
+    <p class="eyebrow">OFFICIAL ACCOUNTS</p>
     <h1>Links</h1>
-
+    <p class="jp-label">各種リンク</p>
   </header>
 
   <section class="social-grid" aria-label="各種リンク">
@@ -153,4 +233,9 @@
       <a class="social-tile social-tile-sub" href="https://bsky.app/profile/nnfjchn.bsky.social" target="_blank" rel="noopener noreferrer"><span>Bluesky</span><b>↗</b></a>
     </div>
   </section>
-</main><footer><span>© NANAFUJI CHIHANE</span><span>OFFICIAL WEBSITE</span></footer><script src="assets/js/main.js"></script></body></html>
+</main>
+
+<footer><span>© NAME</span><span>OFFICIAL WEBSITE</span></footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
