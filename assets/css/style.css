@@ -521,6 +521,7 @@ footer {
 }
 .lightbox-close {
   position: absolute;
+  z-index: 2;
   top: 18px;
   right: 24px;
   border: 0;
@@ -707,59 +708,22 @@ footer {
 .costume-switcher img {
   cursor: zoom-in;
 }
-/* COSTUME：立ち絵の高さと三面図の短辺（高さ）を揃える */
-@media (min-width: 769px) {
-  .costume-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2.25fr);
-    align-items: stretch;
-  }
-  .costume-grid .costume-fullbody,
-  .costume-grid .costume-sheet {
-    height: min(72vw, 620px);
-    min-height: 0;
-    aspect-ratio: auto;
-    padding: 0;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .costume-grid .costume-fullbody img,
-  .costume-grid .costume-sheet img {
-    display: block;
-    width: auto;
-    height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-  }
+/* 三面図の表示枠を画像の比率に合わせる */
+.costume-grid .costume-sheet {
+  aspect-ratio: 3/2;
+  min-height: 0;
+  aspect-ratio: auto;
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  background: transparent;
 }
-@media (max-width: 768px) {
-  .costume-grid .costume-fullbody,
-  .costume-grid .costume-sheet {
-    height: auto;
-    min-height: 0;
-    aspect-ratio: auto;
-    padding: 0;
-    background: transparent;
-  }
-  .costume-grid .costume-fullbody img,
-  .costume-grid .costume-sheet img {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
+.costume-grid .costume-sheet img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
-/* 拡大表示の閉じるボタンを常に前面に */
-.lightbox-close {
-  z-index: 110;
-  min-width: 44px;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* HOME scroll reveal */
 /* HOME：透かしのようなPROFILEパネル */
 /* HOME メインビジュアルの高さを少し抑える */
@@ -1874,72 +1838,5 @@ body.is-loaded .hero-scroll-stage .hero-art img {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     grid-auto-flow: row !important;
-  }
-}
-
-
-/* COSTUME: align the portrait's long edge with the sheet's short edge */
-.costume-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: stretch;
-  gap: 20px;
-}
-.costume-grid .costume-fullbody,
-.costume-grid .costume-sheet {
-  height: min(70vw, 680px);
-  min-height: 0;
-  padding: 0;
-  background: transparent;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.costume-grid .costume-fullbody img,
-.costume-grid .costume-sheet img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-}
-.lightbox {
-  z-index: 2000;
-}
-.lightbox-close {
-  position: fixed;
-  z-index: 2010;
-  top: 18px;
-  right: 24px;
-  display: grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  padding: 0;
-  line-height: 1;
-  background: rgba(36, 28, 39, .82);
-  border: 1px solid rgba(255,255,255,.6);
-  color: #fff;
-  font-size: 2rem;
-  cursor: pointer;
-}
-.lightbox-content {
-  position: relative;
-  z-index: 1;
-}
-@media (max-width: 760px) {
-  .costume-grid {
-    grid-template-columns: 1fr;
-    align-items: start;
-  }
-  .costume-grid .costume-fullbody,
-  .costume-grid .costume-sheet {
-    width: 100%;
-    height: min(88vw, 620px);
-  }
-  .lightbox-close {
-    top: 12px;
-    right: 12px;
   }
 }
